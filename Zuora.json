@@ -1,0 +1,983 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ZuoraAPI",
+    "description": "Neuron ESB Provided Swagger Interface to interact with Zuora Rest API",
+    "contact": {
+      "name": "Neuron Support",
+      "url": "http://www.neuronesb.com",
+      "email": "neuronsupport@neudesic.com"
+    },
+    "license": {
+      "name": "MIT"
+    },
+    "version": "v1"
+  },
+  "host": "https://api.zuora.com/rest/v1",
+  "schemes": [
+    "Http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/catalog/products": {
+      "get": {
+        "tags": [
+          "Catalog                    "
+        ],
+        "summary": "Catalog",
+        "description": "This REST API reference describes how to retrieve the entire product catalog, including all products, features, and their corresponding rate plans, charges. Products are returned in reverse chronological order on the UpdatedDate field. ",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"products\": [\r\n   {\r\n     \"id\": \"2c92c0f94f7243eb014f726032281e9a\",\r\n     \"sku\": \"SKU-00000608\",\r\n     \"name\": \"TeamCollab\",\r\n     \"description\": \"Team Collaboration\",\r\n     \"productRatePlans\": [\r\n       {\r\n         \"id\": \"2c92c0f94f7243e6014f7260f69923aa\",\r\n         \"status\": \"Active\",\r\n         \"name\": \"TeamCollab Basic\",\r\n         \"description\": \"\",\r\n         \"effectiveStartDate\": \"2015-08-28\",\r\n         \"effectiveEndDate\": \"2017-08-30\",\r\n         \"productRatePlanCharges\": [\r\n           {\r\n             \"id\": \"2c92c0f94f7243e6014f7261f2ac24eb\",\r\n             \"name\": \"Annual Basic\",\r\n             \"type\": \"Recurring\",\r\n             \"model\": \"FlatFee\",\r\n             \"uom\" : \"Each\",\r\n             \"pricingSummary\": [ \"USD1200/Each\" ],\r\n             \"pricing\" : [ \r\n             {\r\n               \"currency\" : \"USD\",\r\n               \"price\" : 234.000000000,\r\n               \"tiers\" : null,\r\n               \"includedUnits\" : null,\r\n               \"overagePrice\" : null,\r\n               \"discountPercentage\" : null,\r\n               \"discountAmount\" : null\r\n             } ], \r\n             \"defaultQuantity\" : 233.000000000,\r\n             \"applyDiscountTo\" : null,\r\n             \"discountLevel\" : null,\r\n             \"endDateCondition\" : \"Fixed_Period\",\r\n             \"upToPeriods\" : 1, \r\n             \"upToPeriodsType\" : \"Years\",\r\n             \"billingDay\": \"DefaultFromCustomer\",\r\n             \"listPriceBase\" : \"Per_Billing_Period\",\r\n             \"billingTiming\" : \"IN_ADVANCE\",\r\n             \"billingPeriod\": \"Annual\",\r\n             \"billingPeriodAlignment\" : \"AlignToCharge\",\r\n             \"specificBillingPeriod\" : null,\r\n             \"smoothingModel\" : null,\r\n             \"numberOfPeriods\" : null,\r\n             \"overageCalculationOption\" : null,\r\n             \"overageUnusedUnitsCreditOption\" : null,\r\n             \"usageRecordRatingOption\" : null,\r\n             \"priceChangeOption\" : null,\r\n             \"priceIncreasePercentage\" : null,\r\n             \"useTenantDefaultForPriceChange\" : true,\r\n             \"taxable\": false,\r\n             \"taxCode\": \"\",\r\n             \"taxMode\": \"TaxExclusive\",\r\n             \"triggerEvent\" : \"ContractEffective\",\r\n             \"description\" : \"\"\r\n           }\r\n         ]\r\n       }\r\n     ]\r\n    }\r\n  ]\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/catalog/products</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/connections": {
+      "post": {
+        "tags": [
+          "Connections                    "
+        ],
+        "summary": "Connections",
+        "description": "Establishes a connection to the Zuora REST API service based on a valid user credentials.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/connections</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/files/{file-id}": {
+      "get": {
+        "tags": [
+          "Get Files                    "
+        ],
+        "summary": "Get Files",
+        "description": "This REST API retrieves the invoice PDF file.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>return the data of the file content as stream.\r\nFile is saved as 4028921546228839014622e08ea10002.pdf</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/files/4028921546228839014622e08ea10002</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/hmac-signatures": {
+      "post": {
+        "tags": [
+          "HMAC Signatures                    "
+        ],
+        "summary": "HMAC Signatures",
+        "description": "This REST API reference describes how to return unique signature and token values that used to process a CORS enabled API call.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{ \"success\" : false, \"reasons\" : [ { \"message\" : \"Invalid token. Note: a token can only be used once.\", \"code\" : 90000011 } ] }</td></tr><tr><td>Response Sample  </td></tr><tr><td>{ \"success\" : false, \"reasons\" : [ { \"message\" : \"This API is not CORS enabled.\", \"code\" : 90000010 } ] }</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/hmac-signatures</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/hostedpages?version={versionNumber}": {
+      "get": {
+        "tags": [
+          "Hosted Pages                    "
+        ],
+        "summary": "Hosted Pages",
+        "description": "The hostedpages call returns the Payment Pages configuration metadata, specifically, page ID, page version, payment method type.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{   \r\n    \"hostedpages\" : \r\n    [ \r\n        {\r\n            \"pageId\" : \"8a85858f49a3f2230149abccaa2e004a\",     \r\n            \"pageType\" : \"ACH\",     \r\n            \"pageVersion\" : 2.0   \r\n        }, \r\n        {\r\n            \"pageId\" : \"8a85858f49a3f2230149abcd99090057\",     \r\n            \"pageType\" : \"Bank Transfer\",     \r\n            \"pageVersion\" : 2.0   \r\n         }, \r\n         {     \r\n            \"pageId\" : \"8a85858f49a3f2230149a71083d40019\",     \r\n            \"pageType\" : \"Credit Card\",     \r\n            \"pageVersion\" : 2.0   \r\n         }\r\n    ],\r\n    \"success\" : true \r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>/hostedpages?version=(versionNumber)</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/quotes/document": {
+      "post": {
+        "tags": [
+          "Quotes Document                    "
+        ],
+        "summary": "Quotes Document",
+        "description": "The document call generates a quote document and returns the generated document URL. You can directly access the generated quote file through the returned URL.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\n   \"success\": true,\n   \"file\": \n      \"/file/2c92c09447f1ca410147f7bfed8c5a87\"\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>/quotes/document</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-recognition-rules/subscription-charges/{charge-key}": {
+      "get": {
+        "tags": [
+          "Revenue Rules: Get the rule associated with a charge                    "
+        ],
+        "summary": "Revenue Rules: Get the rule associated with a charge",
+        "description": "This REST API reference describes how to get the revenue recognition rule associated with a subscription charge by specifying the charge ID. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"revenueRecognitionRuleName\": \"Recognize upon invoicing\",\r\n    \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-recognition-rules/subscription-charges/2c92c0f943977b4f0143b22488ef444a</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/settings/finance/revenue-automation-start-date": {
+      "get": {
+        "tags": [
+          "Settings: Get the revenue automation start date                    "
+        ],
+        "summary": "Settings: Get the revenue automation start date",
+        "description": "This REST API reference describes how to get the revenue automation start date. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"startDate\": \"2012-02-01\",\r\n    \"updatedOn\": \"2013-09-11 22:49:18\",\r\n    \"updatedBy\": \"MyCorpAdmin\",\r\n    \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/settings/finance/revenue-automation-start-date</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/accounts": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Create account",
+        "description": "This REST API reference describes how to create a customer account with a credit-card payment method, a bill-to contact, and an optional sold-to contact. Request and response field descriptions and sample code are provided. Use this method to optionally create a subscription, invoice for that subscription, and collect payment through the default payment method. The transaction is atomic; if any part fails for any reason, the entire transaction is rolled back.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\r\n  \"name\": \"Zuora Test Account\",\r\n  \"currency\": \"USD\",\r\n  \"notes\": \"This account is for demo purposes.\",\r\n  \"billCycleDay\": 0,\r\n  \"autoPay\": false, \r\n  \"paymentTerm\": \"Due Upon Receipt\",\r\n  \"billToContact\": {\r\n    \"address1\": \"1051 E Hillsdale Blvd\",\r\n    \"city\": \"Foster City\",\r\n    \"country\": \"United States\",\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Smith\",\r\n    \"zipCode\": \"94404\",\r\n    \"state\": \"CA\",\r\n    \"workEmail\": \"john.smith@test.com\"\r\n  },\r\n  \"hpmCreditCardPaymentMethodId\": \"2c92c0f93cf64d94013cfe2d20db61a7\",\r\n  \"subscription\": {\r\n    \"termType\": \"TERMED\",\r\n    \"initialTerm\": 12,\r\n    \"renewalTerm\": 12,\r\n    \"autoRenew\": true,\r\n    \"notes\": \"This is a trial subscription for POST account demo.\",\r\n    \"subscribeToRatePlans\": [\r\n      {\r\n        \"productRatePlanId\": \"2c92c0f94ac8307f014ae5d3d1d469e2\",\r\n        \"chargeOverrides\": [\r\n          {\r\n              \"productRatePlanChargeId\": \"2c92c0f94ac8307f014ae5d4a5156b28\",\r\n              \"price\": 1000\r\n          },\r\n          {\r\n              \"productRatePlanChargeId\": \"2c92c0f94ac8307f014ae5dbe2947851\",\r\n              \"price\": 1000\r\n          }\r\n        ]\r\n      },\r\n      {\r\n        \"productRatePlanId\": \"2c92c0f93cf64d94013d027681560341\",\r\n        \"chargeOverrides\": [\r\n          {\r\n            \"productRatePlanChargeId\": \"2c92c0f83cf64298013d027725a67b7b\",\r\n            \"price\": 1000\r\n          }\r\n        ]\r\n      }\r\n    ],\r\n    \"contractEffectiveDate\": \"2016-01-01\"\r\n  },\r\n  \"invoice\": true,\r\n  \"collect\": false\r\n}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{ \r\n\"success\": true, \"accountId\": \"402892c74c9193cd014c96bbe7c101f9\", \r\n\"accountNumber\": \"A00000004\", \r\n\"paymentMethodId\": \"402892c74c9193cd014c96bbe7d901fd\" \r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/accounts</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/accounts/{account-key}": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Get account",
+        "description": "This REST API reference describes how to retrieve basic information about a customer account.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"basicInfo\": {\r\n        \"id\": \"402892c74c9193cd014c91d35b0a0132\",\r\n        \"name\": \"Test\",\r\n        \"accountNumber\": \"A00000001\",\r\n        \"notes\": \"\",\r\n        \"status\": \"Active\",\r\n        \"crmId\": \"\",\r\n        \"batch\": \"Batch1\",\r\n        \"invoiceTemplateId\": null,\r\n        \"communicationProfileId\": \"303d186840e611df817c002185d714e1\"\r\n    },\r\n    \"billingAndPayment\": {\r\n        \"billCycleDay\": 1,\r\n        \"currency\": \"USD\",\r\n        \"paymentTerm\": \"Net 30\",\r\n        \"paymentGateway\": \"TestGateway\"\r\n    },\r\n    \"metrics\": {\r\n        \"balance\": 0,\r\n        \"totalInvoiceBalance\": 0,\r\n        \"creditBalance\": 0,\r\n        \"contractedMrr\": -900\r\n    },\r\n    \"billToContact\": {\r\n        \"address1\": \"\",\r\n        \"address2\": \"\",\r\n        \"city\": \"\",\r\n        \"country\": null,\r\n        \"county\": null,\r\n        \"fax\": \"\",\r\n        \"firstName\": \"Test\",\r\n        \"homePhone\": \"\",\r\n        \"lastName\": \"Test\",\r\n        \"mobilePhone\": \"\",\r\n        \"nickname\": \"\",\r\n        \"otherPhone\": \"\",\r\n        \"otherPhoneType\": null,\r\n        \"personalEmail\": \"\",\r\n        \"state\": \"\",\r\n        \"taxRegion\": null,\r\n        \"workEmail\": \"Test@zuora.com\",\r\n        \"workPhone\": \"\",\r\n        \"zipCode\": \"\"\r\n    },\r\n    \"soldToContact\": {\r\n        \"address1\": \"\",\r\n        \"address2\": \"\",\r\n        \"city\": \"\",\r\n        \"country\": null,\r\n        \"county\": null,\r\n        \"fax\": \"\",\r\n        \"firstName\": \"Test\",\r\n        \"homePhone\": \"\",\r\n        \"lastName\": \"Test\",\r\n        \"mobilePhone\": \"\",\r\n        \"nickname\": \"\",\r\n        \"otherPhone\": \"\",\r\n        \"otherPhoneType\": null,\r\n        \"personalEmail\": \"\",\r\n        \"state\": \"\",\r\n        \"taxRegion\": null,\r\n        \"workEmail\": \"Test@zuora.com\",\r\n        \"workPhone\": \"\",\r\n        \"zipCode\": \"\"\r\n    },\r\n    \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/accounts/A00001115</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/accounts/{account-key}/summary": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Get account summary",
+        "description": "This REST API reference describes how to retrieve detailed information about the specified customer account.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"payments\": [\r\n    {\r\n      \"paidInvoices\": [\r\n        {\r\n          \"invoiceNumber\": \"INV00000159\",\r\n          \"appliedPaymentAmount\": 5.0,\r\n          \"invoiceId\": \"2c92a09539190dbe0139190f42780012\"\r\n        },\r\n        {\r\n          \"invoiceNumber\": \"INV00000323\",\r\n          \"appliedPaymentAmount\": 139722.1,\r\n          \"invoiceId\": \"2c92a0953a3fa95d013a407c10a60100\"\r\n        },\r\n        {\r\n          \"invoiceNumber\": \"INV00000160\",\r\n          \"appliedPaymentAmount\": 10521.0,\r\n          \"invoiceId\": \"2c92a09739190dc60139194bcf1b0098\"\r\n        }\r\n      ],\r\n      \"paymentNumber\": \"P-00000075\",\r\n      \"status\": \"Processed\",\r\n      \"effectiveDate\": \"2013-03-27\",\r\n      \"id\": \"2c92c8f83dabf9cf013daf3bfa0305a6\",\r\n      \"paymentType\": \"Electronic\"\r\n    },\r\n    {\r\n      \"paidInvoices\": [\r\n        {\r\n          \"invoiceNumber\": \"INV00000159\",\r\n          \"appliedPaymentAmount\": 5.0,\r\n          \"invoiceId\": \"2c92a09539190dbe0139190f42780012\"\r\n        }\r\n      ],\r\n      \"paymentNumber\": \"P-00000056\",\r\n      \"status\": \"Processed\",\r\n      \"effectiveDate\": \"2012-08-11\",\r\n      \"id\": \"2c92a0f9391832b101391922ad5f049d\",\r\n      \"paymentType\": \"Electronic\"\r\n    }\r\n  ],\r\n  \"invoices\": [\r\n    {\r\n      \"amount\": 139722.1,\r\n      \"status\": \"Posted\",\r\n      \"invoiceNumber\": \"INV00000323\",\r\n      \"invoiceDate\": \"2013-02-11\",\r\n      \"balance\": 0.0,\r\n      \"id\": \"2c92a0953a3fa95d013a407c10a60100\",\r\n      \"dueDate\": \"2013-02-11\"\r\n    },\r\n    {\r\n      \"amount\": 10521.0,\r\n      \"status\": \"Posted\",\r\n      \"invoiceNumber\": \"INV00000160\",\r\n      \"invoiceDate\": \"2012-08-11\",\r\n      \"balance\": 0.0,\r\n      \"id\": \"2c92a09739190dc60139194bcf1b0098\",\r\n      \"dueDate\": \"2012-08-11\"\r\n    },\r\n    {\r\n      \"amount\": 10.0,\r\n      \"status\": \"Posted\",\r\n      \"invoiceNumber\": \"INV00000159\",\r\n      \"invoiceDate\": \"2012-08-11\",\r\n      \"balance\": 0.0,\r\n      \"id\": \"2c92a09539190dbe0139190f42780012\",\r\n      \"dueDate\": \"2012-08-11\"\r\n    }\r\n  ],\r\n  \"usage\": [\r\n    {\r\n      \"unitOfMeasure\": \"UOM\",\r\n      \"quantity\": 10.0,\r\n      \"startDate\": \"2012-02\"\r\n    },\r\n    {\r\n      \"unitOfMeasure\": \"UOM\",\r\n      \"quantity\": 10.0,\r\n      \"startDate\": \"2012-01\"\r\n    }\r\n  ],\r\n  \"basicInfo\": {\r\n    \"defaultPaymentMethod\": {\r\n      \"creditCardNumber\": \"************1111\",\r\n      \"paymentMethodType\": \"CreditCard\",\r\n      \"creditCardExpirationMonth\": 10,\r\n      \"creditCardExpirationYear\": 2020,\r\n      \"creditCardType\": \"Visa\",\r\n      \"id\": \"2c92c8f83dabf9cf013daef12dd303b0\"\r\n    },\r\n    \"status\": \"Active\",\r\n    \"lastInvoiceDate\": \"2013-02-11\",\r\n    \"lastPaymentAmount\": 150248.1,\r\n    \"billCycleDay\": 1,\r\n    \"name\": \"subscribeCallYan_1\",\r\n    \"balance\": 0.0,\r\n    \"accountNumber\": \"A00001115\",\r\n    \"id\": \"2c92a0f9391832b10139183e277a0042\",\r\n    \"dfadsf__c\": null,\r\n    \"currency\": \"USD\",\r\n    \"lastPaymentDate\": \"2013-03-27\"\r\n  },\r\n  \"soldToContact\": {\r\n    \"fax\": \"\",\r\n    \"taxRegion\": \"\",\r\n    \"country\": \"United States\",\r\n    \"zipCode\": \"95135\",\r\n    \"county\": \"\",\r\n    \"lastName\": \"Cho\",\r\n    \"workEmail\": \"work_email@zbcloud.com\",\r\n    \"state\": \"California\",\r\n    \"address2\": \"\",\r\n    \"address1\": \"278 Bridgeton Circle\",\r\n    \"firstName\": \"Bill\",\r\n    \"id\": \"2c92a0f9391832b10139183e27940043\",\r\n    \"workPhone\": \"5555551212\",\r\n    \"city\": \"San Jose\"\r\n  },\r\n  \"success\": true,\r\n  \"subscriptions\": [\r\n    {\r\n      \"termEndDate\": \"2014-02-01\",\r\n      \"termStartDate\": \"2013-02-01\",\r\n      \"status\": \"Active\",\r\n      \"initialTerm\": 12,\r\n      \"autoRenew\": true,\r\n      \"subscriptionNumber\": \"A-S00001081\",\r\n      \"subscriptionStartDate\": \"2013-02-01\",\r\n      \"id\": \"2c92c8f83dc4f752013dc72c24ee016d\",\r\n      \"ratePlans\": [\r\n        {\r\n          \"productName\": \"Recurring Charge\",\r\n          \"ratePlanName\": \"QSF_Tier\"\r\n        }\r\n      ],\r\n      \"termType\": \"TERMED\",\r\n      \"renewalTerm\": 3\r\n    },\r\n    {\r\n      \"termEndDate\": \"2014-02-01\",\r\n      \"termStartDate\": \"2013-02-01\",\r\n      \"status\": \"Active\",\r\n      \"initialTerm\": 12,\r\n      \"autoRenew\": true,\r\n      \"subscriptionNumber\": \"A-S00001080\",\r\n      \"subscriptionStartDate\": \"2013-02-01\",\r\n      \"id\": \"2c92c8f83dc4f752013dc72bb85c0127\",\r\n      \"ratePlans\": [\r\n        {\r\n          \"productName\": \"Recurring Charge\",\r\n          \"ratePlanName\": \"QSF_Tier\"\r\n        }\r\n      ],\r\n      \"termType\": \"TERMED\",\r\n      \"renewalTerm\": 3\r\n    },\r\n    {\r\n      \"termEndDate\": \"2014-04-01\",\r\n      \"termStartDate\": \"2013-12-01\",\r\n      \"status\": \"Cancelled\",\r\n      \"initialTerm\": 10,\r\n      \"autoRenew\": false,\r\n      \"subscriptionNumber\": \"A-S00001079\",\r\n      \"subscriptionStartDate\": \"2013-02-01\",\r\n      \"id\": \"2c92c8f83dc4f752013dc723fdab00d4\",\r\n      \"ratePlans\": [\r\n        {\r\n          \"productName\": \"Recurring Charge\",\r\n          \"ratePlanName\": \"QSF_Tier\"\r\n        }\r\n      ],\r\n      \"termType\": \"TERMED\",\r\n      \"renewalTerm\": 4\r\n    },\r\n    {\r\n      \"termEndDate\": \"2012-02-11\",\r\n      \"termStartDate\": \"2011-02-11\",\r\n      \"status\": \"Active\",\r\n      \"initialTerm\": 12,\r\n      \"autoRenew\": false,\r\n      \"subscriptionNumber\": \"A-S00001076\",\r\n      \"subscriptionStartDate\": \"2011-02-11\",\r\n      \"id\": \"2c92c8f83db0b4b4013db4717ad000ec\",\r\n      \"ratePlans\": [\r\n        {\r\n          \"productName\": \"Recurring Charge\",\r\n          \"ratePlanName\": \"Month_PerUnit\"\r\n        },\r\n        {\r\n          \"productName\": \"Recurring Charge\",\r\n          \"ratePlanName\": \"Month_PerUnit\"\r\n        }\r\n      ],\r\n      \"termType\": \"TERMED\",\r\n      \"renewalTerm\": 3\r\n    },\r\n    {\r\n      \"termEndDate\": \"2012-02-11\",\r\n      \"termStartDate\": \"2011-02-11\",\r\n      \"status\": \"Active\",\r\n      \"initialTerm\": 12,\r\n      \"autoRenew\": false,\r\n      \"subscriptionNumber\": \"A-S00001075\",\r\n      \"subscriptionStartDate\": \"2011-02-11\",\r\n      \"id\": \"2c92c8f83db0b4b4013db3ab6a4d00bc\",\r\n      \"ratePlans\": [\r\n        {\r\n          \"productName\": \"Recurring Charge\",\r\n          \"ratePlanName\": \"Month_PerUnit\"\r\n        },\r\n        {\r\n          \"productName\": \"Recurring Charge\",\r\n          \"ratePlanName\": \"Month_PerUnit\"\r\n        }\r\n      ],\r\n      \"termType\": \"TERMED\",\r\n      \"renewalTerm\": 3\r\n    },\r\n    {\r\n      \"termEndDate\": \"2012-02-11\",\r\n      \"termStartDate\": \"2011-02-11\",\r\n      \"status\": \"Active\",\r\n      \"initialTerm\": 12,\r\n      \"autoRenew\": false,\r\n      \"subscriptionNumber\": \"A-S00001074\",\r\n      \"subscriptionStartDate\": \"2011-02-11\",\r\n      \"id\": \"2c92c8f83db0b4b4013db3aa9fbd0090\",\r\n      \"ratePlans\": [\r\n        {\r\n          \"productName\": \"Recurring Charge\",\r\n          \"ratePlanName\": \"Month_PerUnit\"\r\n        }\r\n      ],\r\n      \"termType\": \"TERMED\",\r\n      \"renewalTerm\": 3\r\n    }\r\n  ],\r\n  \"billToContact\": {\r\n    \"fax\": \"\",\r\n    \"taxRegion\": \"\",\r\n    \"country\": \"United States\",\r\n    \"zipCode\": \"95135\",\r\n    \"county\": \"\",\r\n    \"lastName\": \"Zou\",\r\n    \"workEmail\": \"work_email@zbcloud.com\",\r\n    \"state\": \"California\",\r\n    \"address2\": \"\",\r\n    \"address1\": \"1400 Bridge Pkwy\",\r\n    \"firstName\": \"Cheng\",\r\n    \"id\": \"2c92a0f9391832b10139183e27940043\",\r\n    \"workPhone\": \"5555551212\",\r\n    \"city\": \"San Jose\"\r\n  }\r\n  \"batch\": \"Australia\"\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/accounts/A00001115/summary</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/accounts/{account-key}": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Update account",
+        "description": "This REST API reference describes how to update a customer account by specifying the account-key.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{ \r\n  \"paymentGateway\" : \"TestGateway\" \r\n}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td></td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/amendments/{amendment-key}": {
+      "get": {
+        "tags": [
+          "Amendments "
+        ],
+        "summary": "Get Amendments By Key",
+        "description": "This REST API reference describes how to retrieve detailed information about a specified subscription amendment.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\n    \"success\": true,\n    \"id\": \"402896a9529c100a01529c30e26a0018\",\n    \"code\": \"A-AM00000002\",\n    \"name\": \"testAmendment\",\n    \"type\": \"TermsAndConditions\",\n    \"description\": \"just for test\",\n    \"status\": \"Completed\",\n    \"contractEffectiveDate\": \"2016-02-01\",\n    \"serviceActivationDate\": \"2016-02-01\",\n    \"customerAcceptanceDate\": \"2016-02-01\",\n    \"effectiveDate\": \"2016-02-01\",\n    \"newSubscriptionId\": \"402896a9529c100a01529c311930001d\",\n    \"baseSubscriptionId\": \"402896a9529c100a01529c2f2cc30010\",\n    \"termType\": \"TERMED\",\n    \"currentTerm\": 2,\n    \"termStartDate\": \"2015-12-31\",\n    \"renewalSetting\": \"RENEW_WITH_SPECIFIC_TERM\",\n    \"renewalTerm\": 1,\n    \"renewalTermPeriodType\": \"Month\",\n    \"autoRenew\": false,\n    \"specificUpdateDate\": null,\n    \"newRatePlanId\": null,\n    \"baseRatePlanId\": null,\n    \"destinationAccountId\": \"402896a9529bc3dc01529bcba7120023\",\n    \"destinationInvoiceOwnerId\": \"402896a9529bc3dc01529bcba7120023\"\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/amendments/</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/amendments/subscriptions/{subscription-id}": {
+      "get": {
+        "tags": [
+          "Amendments "
+        ],
+        "summary": "Get Amendments By Subscription Id",
+        "description": "This REST API reference describes how to retrieve detailed information about an amendment with the specified subscription.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\n    \"success\": true,\n    \"id\": \"402896a9529c100a01529c30e26a0018\",\n    \"code\": \"A-AM00000002\",\n    \"name\": \"testAmendment\",\n    \"type\": \"TermsAndConditions\",\n    \"description\": \"just for test\",\n    \"status\": \"Completed\",\n    \"contractEffectiveDate\": \"2016-02-01\",\n    \"serviceActivationDate\": \"2016-02-01\",\n    \"customerAcceptanceDate\": \"2016-02-01\",\n    \"effectiveDate\": \"2016-02-01\",\n    \"newSubscriptionId\": \"402896a9529c100a01529c311930001d\",\n    \"baseSubscriptionId\": \"402896a9529c100a01529c2f2cc30010\",\n    \"termType\": \"TERMED\",\n    \"currentTerm\": 2,\n    \"termStartDate\": \"2015-12-31\",\n    \"renewalSetting\": \"RENEW_WITH_SPECIFIC_TERM\",\n    \"renewalTerm\": 1,\n    \"renewalTermPeriodType\": \"Month\",\n    \"autoRenew\": false,\n    \"specificUpdateDate\": null,\n    \"newRatePlanId\": null,\n    \"baseRatePlanId\": null,\n    \"destinationAccountId\": \"402896a9529bc3dc01529bcba7120023\",\n    \"destinationInvoiceOwnerId\": \"402896a9529bc3dc01529bcba7120023\"\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/amendments/subscriptions&#8203;/402896a9529c100a01529c311930001d</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/charge-revenue-summaries/{crs-number}": {
+      "get": {
+        "tags": [
+          "Charge Revenue Summaries "
+        ],
+        "summary": "Get Charge Summary Details by CRS number",
+        "description": "This REST API reference describes how to retrieve the details of a charge revenue summary by specifying the charge revenue summary number. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"number\": \"CRS-00000001\",\r\n   \"recognitionRuleName\": \"Recognize upon invoicing\",\r\n   \"amount\": 660,\r\n   \"undistributedUnrecognizedRevenue\": 565,\r\n   \"recognizedRevenue\": 0,\r\n   \"unrecognizedRevenue\": 660,\r\n   \"currency\": \"USD\",\r\n   \"notes\": null,\r\n   \"accountId\": \"2c92c0f8439770960143b2141f5a555e\",\r\n   \"subscriptionId\": \"2c92c0f943977b4f0143b23487999327\",\r\n   \"subscriptionChargeId\": \"2c92c0f943977b4f0143b11187ed432e\",\r\n   \"revenueItems\": [\r\n      {\r\n         \"accountingPeriodName\": \"Sep'2013\",\r\n         \"isAccountingPeriodClosed\": false,\r\n         \"amount\": 35,\r\n         \"currency\": \"USD\",\r\n         \"accountingPeriodStartDate\": \"2013-09-01\",\r\n         \"accountingPeriodEndDate\": \"2013-09-30\"\r\n         },\r\n     {\r\n         \"accountingPeriodName\": \"Oct'2013\",\r\n         \"isAccountingPeriodClosed\": false,\r\n         \"amount\": 50,\r\n         \"currency\": \"USD\",\r\n         \"accountingPeriodStartDate\": \"2013-10-01\",\r\n         \"accountingPeriodEndDate\": \"2013-10-31\"\r\n         },\r\n      {\r\n         \"accountingPeriodName\": \"Open-Ended\",\r\n         \"isAccountingPeriodClosed\": false,\r\n         \"amount\": 150,\r\n         \"currency\": \"USD\",\r\n         \"accountingPeriodStartDate\": \"2013-12-11\",\r\n         \"accountingPeriodEndDate\": null\r\n       }\r\n    ],\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/charge-revenue-summaries/CRS-00000001/</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/charge-revenue-summaries/subscription-charges/{charge-key}": {
+      "get": {
+        "tags": [
+          "Charge Revenue Summaries "
+        ],
+        "summary": "Get Charge Revenue Summary Details by Charge ID",
+        "description": "This REST API reference describes how to retrieve the details of a charge revenue summary by specifying the subscription charge ID. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n \"number\": \"CRS-00000001\",\r\n \"recognitionRuleName\": \"Recognize daily over time\",\r\n \"amount\": 428,\r\n \"undistributedUnrecognizedRevenue\": 0,\r\n \"recognizedRevenue\": 0,\r\n \"unrecognizedRevenue\": 428,\r\n \"currency\": \"USD\",\r\n \"notes\": null,\r\n \"accountId\": \"2c92c0f9410f55ee014110a008f6791f\",\r\n \"subscriptionId\": \"2c92c0f9410f55dd014110a14aa47f09\",\r\n \"subscriptionChargeId\": \"2c92c0f9410f55dd014110b22cbc023f\",\r\n \"revenueItems\": [\r\n   {\r\n     \"accountingPeriodName\": \"May 2012\",\r\n     \"isAccountingPeriodClosed\": false,\r\n     \"amount\": 100,\r\n     \"currency\": \"USD\",\r\n     \"accountingPeriodStartDate\": \"2012-05-01\",\r\n     \"accountingPeriodEndDate\": \"2012-05-31\"\r\n   },\r\n   {\r\n     \"accountingPeriodName\": \"Jun 2012\",\r\n     \"isAccountingPeriodClosed\": false,\r\n     \"amount\": 92,\r\n     \"currency\": \"USD\",\r\n     \"accountingPeriodStartDate\": \"2012-06-01\",\r\n     \"accountingPeriodEndDate\": \"2012-06-30\"\r\n   },\r\n   {\r\n     \"accountingPeriodName\": \"Jul 2012\",\r\n     \"isAccountingPeriodClosed\": false,\r\n     \"amount\": 0,\r\n     \"currency\": \"USD\",\r\n     \"accountingPeriodStartDate\": \"2012-07-01\",\r\n     \"accountingPeriodEndDate\": \"2012-07-31\"\r\n   },\r\n   {\r\n     \"accountingPeriodName\": \"Aug 2012\",\r\n     \"isAccountingPeriodClosed\": false,\r\n     \"amount\": 85,\r\n     \"currency\": \"USD\",\r\n     \"accountingPeriodStartDate\": \"2012-08-01\",\r\n     \"accountingPeriodEndDate\": \"2012-08-31\"\r\n   },\r\n   {\r\n     \"accountingPeriodName\": \"Sep 2012\",\r\n     \"isAccountingPeriodClosed\": false,\r\n     \"amount\": 85,\r\n     \"currency\": \"USD\",\r\n     \"accountingPeriodStartDate\": \"2012-09-01\",\r\n     \"accountingPeriodEndDate\": \"2012-09-30\"\r\n   },\r\n   {\r\n     \"accountingPeriodName\": \"Jan'2013\",\r\n     \"isAccountingPeriodClosed\": false,\r\n     \"amount\": 80,\r\n     \"currency\": \"USD\",\r\n     \"accountingPeriodStartDate\": \"2013-01-01\",\r\n     \"accountingPeriodEndDate\": \"2013-01-31\"\r\n   },\r\n   {\r\n     \"accountingPeriodName\": \"Feb'2013\",\r\n     \"isAccountingPeriodClosed\": false,\r\n     \"amount\": 5,\r\n     \"currency\": \"USD\",\r\n     \"accountingPeriodStartDate\": \"2013-02-01\",\r\n     \"accountingPeriodEndDate\": \"2013-02-28\"\r\n   },\r\n   {\r\n     \"accountingPeriodName\": \"Sep'2013\",\r\n     \"isAccountingPeriodClosed\": false,\r\n     \"amount\": -7,\r\n     \"currency\": \"USD\",\r\n     \"accountingPeriodStartDate\": \"2013-09-01\",\r\n     \"accountingPeriodEndDate\": \"2013-09-30\"\r\n   },\r\n   {\r\n     \"accountingPeriodName\": \"Nov'2013\",\r\n     \"isAccountingPeriodClosed\": false,\r\n     \"amount\": -12,\r\n     \"currency\": \"USD\",\r\n     \"accountingPeriodStartDate\": \"2013-11-01\",\r\n     \"accountingPeriodEndDate\": \"2013-11-30\"\r\n   },\r\n   {\r\n     \"accountingPeriodName\": \"Dec 2013\",\r\n     \"isAccountingPeriodClosed\": false,\r\n     \"amount\": 0,\r\n     \"currency\": \"USD\",\r\n     \"accountingPeriodStartDate\": \"2013-12-11\",\r\n     \"accountingPeriodEndDate\": \"2014-01-10\"\r\n   },\r\n   {\r\n     \"accountingPeriodName\": \"Open-Ended\",\r\n     \"isAccountingPeriodClosed\": false,\r\n     \"amount\": 0,\r\n     \"currency\": \"USD\",\r\n     \"accountingPeriodStartDate\": \"2014-03-12\",\r\n     \"accountingPeriodEndDate\": null\r\n   }\r\n ],\r\n \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/charge-revenue-summaries/subscription-charges/2c92c0f9410f55dd014110b22cbc023f/</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/custom-exchange-rates/{currency}": {
+      "get": {
+        "tags": [
+          "Custom Exchange Rate "
+        ],
+        "summary": "Get Custom Foreign Currency Exchange Rates",
+        "description": "This feature is in Limited Availability. If you wish to have access to the feature, submit a request at Zuora Global Support. ",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"success\": true,\r\n    \"inverse\": true, \r\n    \"rates\": {\r\n        \"2016-01-15\": {\r\n            \"providerExchangeRateDate\": \"2016-01-14\", \r\n            \"JPY\": 0.0084,\r\n            \"EUR\": 1.0815,\r\n            \"GBP\": 1.4472\r\n        },\r\n        \"2016-01-16\": {\r\n            \"providerExchangeRateDate\": \"2016-01-15\",\r\n            \"JPY\": 0.0085,\r\n            \"EUR\": 1.0827,\r\n            \"GBP\": 1.4634\r\n        }\r\n    }\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>/custom-exchange-rates/USD?startDate=2016-01-15&amp;endDate=2016-01-16</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/journal-runs/{jr-number}/cancel": {
+      "post": {
+        "tags": [
+          "Journal Runs "
+        ],
+        "summary": "Cancel Journal Run",
+        "description": "This reference describes how to cancel a journal run using the REST API.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/journal-runs/JR-00000075/cancel</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/journal-runs": {
+      "post": {
+        "tags": [
+          "Journal Runs "
+        ],
+        "summary": "Create Journal Run",
+        "description": "This REST API reference describes how to create a journal run. Request and response field descriptions and sample code are provided. ",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"journalEntryDate\": \"2014-11-04\",\r\n  \"accountingPeriodName\": \"Nov-2014\",\r\n  \"transactionTypes\":[\r\n    {\"type\":\"Invoice Item\"},\r\n    {\"type\":\"Revenue Event Item\"}\r\n   ]\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>POST&nbsphttps://api.zuora.com/rest/v1/journal-runs</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/journal-runs/{jr-number}": {
+      "post": {
+        "tags": [
+          "Journal Runs "
+        ],
+        "summary": "Delete Journal Run",
+        "description": "This reference describes how to delete a journal run using the REST API.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/journal-runs/JR-00000075</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      },
+      "get": {
+        "tags": [
+          "Journal Runs "
+        ],
+        "summary": "Get Journal Run",
+        "description": "This REST API reference describes how to get information about a journal run. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{ \r\n \"number\": \"JR-00000002\",\r\n \"status\": \"Completed\",\r\n \"executedOn\": \"2014-11-15 22:05:12\",\r\n \"segmentationRuleName\": \"s1\", \r\n \"totalJournalEntryCount\": 2,\r\n \"targetStartDate\": \"2016-03-01\", \r\n \"targetEndDate\": \"2016-03-31\", \r\n \"journalEntryDate\": \"2016-02-02\",\r\n \"transactionTypes\": [\r\n        { \"type\": \"Invoice Item\" }\r\n ], \r\n \"success\": true \r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/journal-runs/JR-00000002</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/bulk": {
+      "post": {
+        "tags": [
+          "Mass Updater "
+        ],
+        "summary": "Perform Mass Action",
+        "description": "This reference describes how to perform a mass action through the REST API. See Mass Updater for more information about performing mass actions.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>curl\r\n-H \"apiAccessKeyId:Username\" \r\n-H \"apiSecretAccessKey:Password\"\r\n-H \"Accept:application/json\"\r\n--form \"file=@CreateRevenueSchedules.csv\"\r\n--form \"params={actionType:CreateRevenueSchedule}\"\r\n-X POST https://api.zuora.com/rest/v1/bulk</td></tr><tr><td>Sample Request Url</td></tr><tr><td>/bulk</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/bulk/{bulk-key}": {
+      "get": {
+        "tags": [
+          "Mass Updater "
+        ],
+        "summary": "Get Mass Action Result",
+        "description": "This reference describes how to get information about the result of a mass action through the REST API. See Mass Updater for more information about mass actions.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"actionType\": \"UpdateAccountingCode\",\r\n    \"inputSize\": 354,\r\n    \"uploadedBy\": \"john.doe@acme.com\",\r\n    \"uploadedOn\": \"2015-04-07 14:22:09\",\r\n    \"status\": \"Completed\",\r\n    \"startedOn\": \"2015-04-07 14:22:11\",\r\n    \"endedOn\": \"2015-04-07 14:32:01\",\r\n    \"outputSize\": 350,\r\n    \"outputURL\": \"https://api.zuora.com/apps/api/file/402892c84c9285b1014c9293f5320007\",\r\n    \"outputType\": \"(url:.csv.zip)\",\r\n    \"totalCount\": 3,\r\n    \"processedCount\": 3,\r\n    \"errorCount\": 1,\r\n    \"successCount\": 2,\r\n    \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/bulk/402892f04c97b89a014c97bb30a50003</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/bulk/{bulk-key}/stop": {
+      "post": {
+        "tags": [
+          "Mass Updater "
+        ],
+        "summary": "Stop Mass Action",
+        "description": "This reference describes how to stop a mass action through the REST API. You can stop a mass action when its status is Pending or Processing. After you have stopped a mass action, you can get the mass action result to see details of the mass action.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/bulk/402892f04c97b89a014c97bb30a50003/stop</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/notification-history/callout": {
+      "get": {
+        "tags": [
+          "Notification History "
+        ],
+        "summary": "Get Callout Notification Histories",
+        "description": "This REST API reference describes how to get a notification history for callouts.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"calloutHistories\": [\r\n       {\r\n           \"responseCode\": 405,\r\n           \"requestUrl\": \"https://www.google.com\",\r\n           \"requestMethod\": \"POST\",\r\n           \"eventCategory\": 1210,\r\n           \"notification\": \"New Subscription Created\",\r\n           \"attemptedNum\": 3,\r\n           \"createTime\": \"2015-01-13T03:33:51\",\r\n           \"eventContext\": {\r\n               \"&lt;Account.Currency&gt;\": \"USD\",\r\n               \"&lt;Subscription.SubscriptionDetailTable&gt;\": \"\r\n               Charge Name:recurringcharge\r\n               Charge Type:Recurring\r\n               Effective Start Date:01/01/2016\r\n               Unit Price:50.00\r\n               QTY:5.00\r\n               Total:250.00\",\r\n               \"&lt;Account.CurrencySymbol&gt;\": \"$\",\r\n               \"&lt;BillToContact.FirstName&gt;\": \"Mary\",\r\n               \"&lt;Subscription.ServiceActivation&gt;\": \"01/01/2016\",\r\n               \"&lt;Subscription.InitialTerm&gt;\": \"50\",\r\n               \"&lt;Subscription.RenewalTerm&gt;\": \"0\",\r\n               \"&lt;Subscription.CustomerAcceptance&gt;\": \"01/01/2016\",\r\n               \"&lt;Account.Name&gt;\": \"test\",\r\n               \"&lt;Subscription.SubscriptionName&gt;\": \"A-S00000003\",\r\n               \"&lt;Account.ID&gt;\": \"402881e54ade80c8014ade884c48000b\",\r\n               \"&lt;BillToContact.WorkEmail&gt;\": \"test@test.test\",\r\n               \"&lt;Account.Number&gt;\": \"A00000001\",\r\n               \"&lt;Subscription.TermStartDate&gt;\": \"01/01/2016\",\r\n               \"&lt;Event.Timestamp&gt;\": \"2015-01-13T22:31:43.248+0800\",\r\n               \"&lt;Subscription.AutoRenew&gt;\": \"No\",\r\n               \"&lt;Notification&gt;\": {\r\n                   \"id\": \"402892fa47866fe701478674a5c100eb\",\r\n                   \"EmailTemplate\": \"New Subscription Created Default Email Template\",\r\n                   \"Event\": \"New Subscription Created\",\r\n                   \"Profile\": \"Default Profile\",\r\n                   \"emailAction\": true,\r\n                   \"calloutAction\": true,\r\n                   \"updatedOn\": \"01/12/2015 03:23:08\",\r\n                   \"updatedBy\": \"402892fa47866fe7014786749d9b0002\"\r\n               },\r\n               \"&lt;BillToContact.LastName&gt;\": \"Smith\",\r\n               \"&lt;Object.ID&gt;\": \"402881e54ae37f31014ae3b514e100fd\",\r\n               \"&lt;Subscription.ContractEffective&gt;\": \"01/01/2016\",\r\n               \"&lt;Subscription.TCV&gt;\": \"$12,500.00\",\r\n               \"&lt;Contact.ID&gt;\": \"402881e54ade80c8014ade884c51000c\",\r\n               \"&lt;Subscription.CMRR&gt;\": \"$250.00\",\r\n               \"&lt;BillToContact.ID&gt;\": \"402881e54ade80c8014ade884c51000c\",\r\n               \"&lt;Event.Category&gt;\": \"SubscriptionCreated\",\r\n               \"&lt;Subscription.TermSetting&gt;\": \"termed\",\r\n               \"&lt;BillingAccount.ID&gt;\": \"402881e54ade80c8014ade884c48000b\",\r\n               \"&lt;Subscription.CreateDate&gt;\": \"01/13/2015\",\r\n               \"&lt;Subscription.TermEndDate&gt;\": \"03/01/2020\",\r\n               \"&lt;Subscription.ID&gt;\": \"402881e54ae37f31014ae3b514e100fd\",\r\n               \"&lt;Event.ID&gt;\": \"402892fa47866fe701478674a4ff0093\",\r\n               \"&lt;Subscription.CreatedBy&gt;\": \"da@da.com\"\r\n           }\r\n       }\r\n   ],\r\n   \"nextPage\": \"https://localhost:8080/apps/v1/notification-history/callout?page=2&amp;pageSize=1&amp;startTime=2015-01-12T00:00:00&amp;endTime=2015-01-15T00:00:00&amp;failedOnly=false&amp;eventCategory=1000\",\r\n   \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/notification-history/callout?startTime=2015-01-12T00:00:00&amp;endTime=2015-01-15T00:00:00&amp;failedOnly=false&amp;eventCategory=1000&amp;pageSize=1</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/notification-history/email": {
+      "get": {
+        "tags": [
+          "Notification History "
+        ],
+        "summary": "Get Email Notification Histories",
+        "description": "This REST API reference describes how to get a notification history for notification emails.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>GET https://api.zuora.com/rest/v1/notification-history/email?startTime=2015-01-12T00:00:00&amp;endTime=2015-01-15T00:00:00&amp;failedOnly=false&amp;eventCategory=1000&amp;pageSize=1</td></tr><tr><td>Sample Request Url</td></tr><tr><td>/notification-history/email</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/paymentmethods/credit-cards": {
+      "post": {
+        "tags": [
+          "Payment Methods "
+        ],
+        "summary": "Create payment method",
+        "description": "This REST API reference describes how to create a new credit card payment method for a customer account.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\"defaultPaymentMethod\": false,\r\n\"cardHolderInfo\":\r\n  {\"addressLine1\": \"77 Fallon Glen\",\r\n   \"addressLine2\": \"\",\r\n   \"zipCode\": \"94020\",\r\n   \"state\": \"California\",\r\n   \"phone\": \"4155551234\",\r\n   \"country\": \"USA\",\r\n   \"cardHolderName\": \"Bill Thiebault\",\r\n   \"city\": \"Fremont\",\r\n   \"email\": \"bill@testaddress.com\"},\r\n\"expirationMonth\": \"10\",\r\n\"accountKey\": \"A00001115\",\r\n\"creditCardType\": \"Discover\",\r\n\"expirationYear\": \"2015\",\r\n\"creditCardNumber\": \"1111222233334444\",\r\n\"securityCode\": \"123\"}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"paymentMethodId\": \"2c92c8f83dcbd8b1013dcce1d6a60\",\r\n  \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/paymen...s/credit-cards</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/payment-methods/credit-cards/accounts/{account-key}": {
+      "get": {
+        "tags": [
+          "Payment Methods "
+        ],
+        "summary": "Get payment methods",
+        "description": "This REST API reference describes how to retrieve all credit card information for the specified customer account.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"nextPage\": \"/payment-methods/credit-cards/accounts/A00001115?page=2&amp;pageSize=2\",\r\n  \"creditCards\": [\r\n    {\r\n      \"cardHolderInfo\": {\r\n        \"zipCode\": null,\r\n        \"addressLine2\": null,\r\n        \"addressLine1\": null,\r\n        \"phone\": \"4082021111\",\r\n        \"state\": null,\r\n        \"country\": null,\r\n        \"city\": null,\r\n        \"cardHolderName\": \"Leo\",\r\n        \"email\": \"test@zuora.com\"\r\n      },\r\n      \"defaultPaymentMethod\": true,\r\n      \"id\": \"2c92c8f83dabf9cf013daef12dd303b0\",\r\n      \"expirationMonth\": 10,\r\n      \"cardNumber\": \"************1111\",\r\n      \"expirationYear\": 2020,\r\n      \"cardType\": \"Visa\"\r\n    },\r\n    {\r\n      \"cardHolderInfo\": {\r\n        \"zipCode\": \"95135\",\r\n        \"addressLine2\": null,\r\n        \"addressLine1\": \"1400 Bridge Pkwy\",\r\n        \"phone\": null,\r\n        \"state\": \"California\",\r\n        \"country\": \"United States\",\r\n        \"city\": \"San Jose\",\r\n        \"cardHolderName\": \"foo CC name\",\r\n        \"email\": null\r\n      },\r\n      \"defaultPaymentMethod\": false,\r\n      \"id\": \"2c92a0f9391832b10139183e279e0044\",\r\n      \"expirationMonth\": 10,\r\n      \"cardNumber\": \"*****foo CC #\",\r\n      \"expirationYear\": 2012,\r\n      \"cardType\": \"Visa\"\r\n    }\r\n  ],\r\n  \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td></td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/payment-methods/credit-cards/{payment-method-id}": {
+      "post": {
+        "tags": [
+          "Payment Methods "
+        ],
+        "summary": "Update payment method",
+        "description": "Updates an existing credit card payment method for the specified customer account.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\r\n  \"expirationMonth\": 8,\r\n  \"expirationYear\": 2015,\r\n  \"cardHolderName\": \"Leo\",\r\n  \"securityCode\": \"111\"\r\n}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"paymentMethodId\": \"2c92c8f83dcbd8b1013dcce1d6a600ce\",\r\n  \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td></td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/payment-methods/{payment-method-id}": {
+      "post": {
+        "tags": [
+          "Payment Methods "
+        ],
+        "summary": "Delete payment method",
+        "description": "Deletes a credit card payment method from the specified customer account.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td></td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-events/{event-number}": {
+      "get": {
+        "tags": [
+          "Revenue Events "
+        ],
+        "summary": "Get revenue event details",
+        "description": "This REST API reference describes how to get revenue event details by specifying the revenue event number. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"number\": \"RE-00000001\",\r\n   \"currency\": \"USD\",\r\n   \"notes\": null,\r\n   \"accountId\": \"2c92c0f8439770960143b2141f5a584e\",\r\n   \"subscriptionId\": \"2c92c0f943977b4f0143b23487994327\",\r\n   \"subscriptionChargeId\": \"2c92c0f943977b4f0143b23487ed432e\",\r\n   \"createdOn\": \"2014-01-20 16:36:45\",\r\n   \"eventType\": \"Invoice Posted\",\r\n   \"recognitionStart\": \"2013-10-10\",\r\n   \"recognitionEnd\": \"2013-10-10\",\r\n   \"cf_phases__c\": \"Scoping Phase\",\r\n   \"cf_project__c\": \"Security\" \r\n   \"revenueItems\": [\r\n      {\r\n         \"accountingPeriodName\": \"Oct'2013\",\r\n         \"isAccountingPeriodClosed\": false,\r\n         \"amount\": 50,\r\n         \"currency\": \"USD\",\r\n         \"accountingPeriodStartDate\": \"2013-10-01\",\r\n         \"accountingPeriodEndDate\": \"2013-10-31\"\r\n      }\r\n   ],\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-events/RE-00000001</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-events/revenue-schedules/{rs-number}": {
+      "get": {
+        "tags": [
+          "Revenue Events "
+        ],
+        "summary": "Get revenue events for a revenue schedule",
+        "description": "This REST API reference describes how to get all revenue events in a revenue schedule by specifying the revenue schedule number. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\"revenueEventDetails\": [\r\n{\r\n   \"number\": \"RE-00000001\",\r\n   \"currency\": \"USD\",\r\n   \"notes\": \"Phase 1 Test\",\r\n   \"accountId\": \"2c92c0f8439770960143b2111f5a584e\",\r\n   \"subscriptionId\": \"2c92c0f943977b4f0143b23487999327\",\r\n   \"subscriptionChargeId\": \"2c92c0f943977b4f0143b22287ed432e\",\r\n   \"createdOn\": \"2014-01-21 11:35:42\",\r\n   \"eventType\": \"Revenue Distributed\",\r\n   \"recognitionStart\": null,\r\n   \"recognitionEnd\": null,\r\n   \"cf_phases__c\": \"Phase 1\",\r\n   \"cf_project__c\": \"project A\",\r\n   \"revenueItems\": [\r\n      {\r\n         \"accountingPeriodName\": \"Oct'2013\",\r\n         \"isAccountingPeriodClosed\": false,\r\n         \"amount\": 10,\r\n         \"currency\": \"USD\",\r\n         \"accountingPeriodStartDate\": \"2013-10-01\",\r\n         \"accountingPeriodEndDate\": \"2013-10-31\"\r\n         },\r\n      {\r\n         \"accountingPeriodName\": \"Open-Ended\",\r\n         \"isAccountingPeriodClosed\": false,\r\n         \"amount\": -10,\r\n         \"currency\": \"USD\",\r\n         \"accountingPeriodStartDate\": \"2013-11-12\",\r\n         \"accountingPeriodEndDate\": null\r\n         }\r\n      ]\r\n   },\r\n{\r\n   \"number\": \"RE-00000002\",\r\n   \"currency\": \"USD\",\r\n   \"notes\": null,\r\n   \"accountId\": \"2c92c0f8439770960143b2111f5a584e\",\r\n   \"subscriptionId\": \"2c92c0f943977b4f0143b22287994327\",\r\n   \"subscriptionChargeId\": \"2c92c0f943977b4f0143b99987ed432e\",\r\n   \"createdOn\": \"2014-01-20 16:36:45\",\r\n   \"eventType\": \"Invoice Posted\",\r\n   \"recognitionStart\": \"2013-10-10\",\r\n   \"recognitionEnd\": \"2013-10-10\",\r\n   \"cf_phases__c\": \"Phase 1\",\r\n   \"cf_project__c\": \"project A\",\r\n     \"revenueItems\": [\r\n        {\r\n           \"accountingPeriodName\": \"Oct'2013\",\r\n           \"isAccountingPeriodClosed\": false,\r\n           \"amount\": 50,\r\n           \"currency\": \"USD\",\r\n           \"accountingPeriodStartDate\": \"2013-10-01\",\r\n           \"accountingPeriodEndDate\": \"2013-10-31\"\r\n           }\r\n       ]\r\n    }\r\n],\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-events/revenue-schedules/RS-00000001/</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-items/charge-revenue-summaries/{crs-number}": {
+      "get": {
+        "tags": [
+          "Revenue Items "
+        ],
+        "summary": "Get revenue items by charge revenue summary number",
+        "description": "This REST API reference describes how to get the details for each revenue item in a charge revenue summary by specifying the charge revenue summary number. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"revenueItems\": [\r\n      {\r\n         \"accountingPeriodName\": \"Sep'2013\",\r\n         \"isAccountingPeriodClosed\": false,\r\n         \"amount\": 35,\r\n         \"currency\": \"USD\",\r\n         \"accountingPeriodStartDate\": \"2013-09-01\",\r\n         \"accountingPeriodEndDate\": \"2013-09-30\"\r\n         },\r\n      {\r\n         \"accountingPeriodName\": \"Oct'2013\",\r\n         \"isAccountingPeriodClosed\": false,\r\n         \"amount\": 50,\r\n         \"currency\": \"USD\",\r\n         \"accountingPeriodStartDate\": \"2013-10-01\",\r\n         \"accountingPeriodEndDate\": \"2013-10-31\"\r\n         },\r\n      {\r\n         \"accountingPeriodName\": \"Open-Ended\",\r\n         \"isAccountingPeriodClosed\": false,\r\n         \"amount\": 150,\r\n         \"currency\": \"USD\",\r\n         \"accountingPeriodStartDate\": \"2013-12-11\",\r\n         \"accountingPeriodEndDate\": null\r\n      }\r\n   ],\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-items/charge-revenue-summaries/CRS-00000001</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-items/revenue-events/{event-number}": {
+      "get": {
+        "tags": [
+          "Revenue Items "
+        ],
+        "summary": "Get revenue items by revenue event number",
+        "description": "This REST API reference describes how to get the details of each revenue item in a revenue event by specifying the revenue event number. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n\"revenueItems\": [\r\n   {\r\n      \"accountingPeriodName\": \"Oct'2013\",\r\n      \"isAccountingPeriodClosed\": false,\r\n      \"amount\": 50,\r\n      \"currency\": \"USD\",\r\n      \"accountingPeriodStartDate\": \"2013-10-01\",\r\n      \"accountingPeriodEndDate\": \"2013-10-31\"\r\n   }\r\n],\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-items/revenue-events/RE-00000001</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [
+          "Revenue Items "
+        ],
+        "summary": "Update custom fields on revenue items by revenue event number",
+        "description": " ",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\r\n   \"revenueItems\": [\r\n      {\r\n         \"accountingPeriodName\": \"Oct'2014\",\r\n         \"cf_phases__c\": \"Scoping Phase\",\r\n         \"cf_project__c\": \"Security\", }\r\n      {\r\n        \"accountingPeriodName\": \"Nov'2014\",\r\n        \"cf_phases__c\": \"Design Phase\",\r\n        \"cf_project__c\": \"Security\" }\r\n   ]\r\n}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-items/revenue-events/RE-00000001</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-items/revenue-schedules/{rs-number}": {
+      "get": {
+        "tags": [
+          "Revenue Items "
+        ],
+        "summary": "Get revenue items by revenue schedule",
+        "description": "This REST API reference describes how to get the details for each revenue items in a revenue schedule by specifying the revenue schedule number. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"revenueItems\": [\r\n   {\r\n      \"accountingPeriodName\": \"Oct'2013\",\r\n      \"isAccountingPeriodClosed\": false,\r\n      \"amount\": 50,\r\n      \"currency\": \"USD\",\r\n      \"accountingPeriodStartDate\": \"2013-10-01\",\r\n      \"accountingPeriodEndDate\": \"2013-10-31\",\r\n      \"recognizedRevenueAccountingCodeType\": null,\r\n      \"recognizedRevenueAccountingCode\": null,\r\n      \"deferredRevenueAccountingCodeType\": null,\r\n      \"deferredRevenueAccountingCode\": null\r\n      }\r\n   ],\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-schedules/RS-00000001</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-items/revenue-schedules/{rs-number}": {
+      "put": {
+        "tags": [
+          "Revenue Items "
+        ],
+        "summary": "Update custom fields on revenue items by the revenue schedule number",
+        "description": "This REST API reference describes how to update custom fields on revenue Items by specifying the revenue schedule number. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\r\n   \"revenueItems\": [\r\n      {\r\n         \"accountingPeriodName\": \"Oct'2014\",\r\n         \"cf_phases__c\": \"Scoping Phase\",\r\n         \"cf_project__c\": \"Security\", }\r\n      {\r\n        \"accountingPeriodName\": \"Nov'2014\",\r\n        \"cf_phases__c\": \"Design Phase\",\r\n        \"cf_project__c\": \"Security\" }\r\n   ]\r\n}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-items/revenue-schedules/RS-00000001</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-schedules/invoice-items/{invoice-item-id}/distribute-revenue-with-date-range": {
+      "post": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Create a revenue schedule for an Invoice Item (distribute by date range)",
+        "description": "This REST API reference describes how to create a revenue schedule for an Invoice Item and distribute the revenue by specifying the recognition start and end dates.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"distributionType\": \"Daily distribution\",\r\n   \"recognitionStart\": \"2016-12-1\",\r\n   \"recognitionEnd\": \"2016-12-31\",\r\n   \"eventType\": \"Revenue Distributed\",\r\n   \"eventTypeSystemId\": \"RevenueDistributed__z\",\r\n   \"notes\": \"Manually distribute revenue by usage\",\r\n   \"cf_phases__c\": \"Phase 2\"\r\n }</td></tr><tr><td>Sample Request Url</td></tr><tr><td>/revenue-schedules/invoice-items/e20b07fd416dcfcf0141c81164fd0a75/distribute-revenue-with-date-range&#8203;</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-schedules/invoice-items/{invoice-item-id}": {
+      "post": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Create a revenue schedule for an Invoice Item (manual distribution)",
+        "description": "This REST API reference describes how to create a revenue schedule for an Invoice Item and manually distribute the revenue.",
+        "externalDocs": {
+               "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"revenueDistributions\":[\r\n             {\"accountingPeriodName\":\"Jan '16\",\r\n               \"newAmount\":\"20\"},\r\n             {\"accountingPeriodName\":\"Open-Ended\",\r\n                \"newAmount\": \"30\"}\r\n        ]\r\n    \"revenueEvent\":  {\r\n        \"eventType\":\"Revenue Distributed\",\r\n        \"eventTypeSystemId\":\"RevenueDistributed__z\",\r\n         \"notes\":\"My notes\"\r\n        }\r\n}</td></tr><tr><td>Sample Request Url#]</td></tr><tr><td>/revenue-schedules/invoice-items/e20b07fd416dcfcf0141c81164fd0a75</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      },
+      "get": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Get a revenue schedule by invoice item",
+        "description": "This REST API reference describes how to get the details of a revenue schedule by specifying the invoice item identifier. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"number\": \"RS-00000290\",\r\n   \"recognitionRuleName\": \"Recognize upon invoicing\",\r\n   \"amount\": 50,\r\n   \"undistributedUnrecognizedRevenue\": 50,\r\n   \"recognizedRevenue\": 0,\r\n   \"unrecognizedRevenue\": 50,\r\n   \"currency\": \"USD\",\r\n   \"notes\": null,\r\n   \"createdOn\": \"2014-01-21 13:59:25\",\r\n   \"updatedOn\": \"2014-01-21 13:59:25\",\r\n   \"accountId\": \"2c92c0f8439770960143b2141f5a584e\",\r\n   \"subscriptionId\": \"2c92c0f943977b4f0143b23487994327\",\r\n   \"subscriptionChargeId\": \"2c92c0f943977b4f0143b23487ed432e\",\r\n   \"linkedTransactionId\": \"2c92c094439782460143b62c2ee60f59\",\r\n   \"linkedTransactionType\": \"InvoiceItem\",\r\n   \"referenceId\": null,\r\n   \"revenueScheduleDate\": \"2014-01-21\",\r\n   \"cf_phases__c\": \"Phase 1\",\r\n   \"cf_project__c\": \"project A\",\r\n   \"revenueItems\": [\r\n     {\r\n        \"accountingPeriodName\": \"Open-Ended\",\r\n        \"isAccountingPeriodClosed\": false,\r\n        \"amount\": 50,\r\n        \"currency\": \"USD\",\r\n        \"accountingPeriodStartDate\": \"2013-12-11\",\r\n        \"accountingPeriodEndDate\": null,\r\n        \"recognizedRevenueAccountingCodeType\": \"Revenue: Sales\",\r\n        \"recognizedRevenueAccountingCode\": \"Recurring Monthly Revenue\",\r\n        \"deferredRevenueAccountingCodeType\": null,\r\n        \"deferredRevenueAccountingCode\": null\r\n        }\r\n    ],\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-schedules/invoice-items/2c92c094439782460143b62c2ee60f59</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-schedules/invoice-item-adjustments/{invoice-item-adj-key}/distribute-revenue-with-date-range": {
+      "post": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Create a revenue schedule for an Invoice Item Adjustment (distribute by date range)",
+        "description": "This REST API reference describes how to create a revenue schedule for an Invoice Item Adjustment and distribute the revenue by specifying the recognition start and end dates.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"distributionType\": \"Daily distribution\",\r\n   \"recognitionStart\": \"2016-12-1\",\r\n   \"recognitionEnd\": \"2016-12-31\",\r\n   \"eventType\": \"Revenue Distributed\",\r\n   \"eventTypeSystemId\": \"RevenueDistributed__z\",\r\n   \"notes\": \"Manually distribute revenue by usage\",\r\n   \"cf_phases__c\": \"Phase 3\"\r\n }</td></tr><tr><td>Sample Request Url</td></tr><tr><td>/revenue-schedules/invoice-item-adjustments/e20b07fd416dcfcf0141c81164fd0a72/distribute-revenue-with-date-range</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-schedules/invoice-item-adjustments/{invoice-item-adj-key}": {
+      "post": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Create a revenue schedule for an Invoice Item Adjustment (manual distribution)",
+        "description": "This REST API reference describes how to create a revenue schedule for an Invoice Item Adjustment and manually distribute the revenue.",
+        "externalDocs": {
+               "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"revenueDistributions\":[\r\n             {\"accountingPeriodName\":\"Jan '16\",\r\n               \"newAmount\":\"20\"},\r\n             {\"accountingPeriodName\":\"Open-Ended\",\r\n                \"newAmount\": \"30\"}\r\n        ]\r\n    \"revenueEvent\":  {\r\n        \"eventType\":\"Revenue Distributed\",\r\n        \"eventTypeSystemId\":\"RevenueDistributed__z\",\r\n         \"notes\":\"My notes\"\r\n        }\r\n}</td></tr><tr><td>Sample Request Url#]</td></tr><tr><td>/revenue-schedules/invoice-items/e20b07fd416dcfcf0141c81164fd0a72</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-schedules/subscription-charges/{charge-key}": {
+      "post": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Create a revenue schedule on a subscription charge",
+        "description": "This REST API reference describes how to create a revenue schedule by specifying the subscription charge. This method is for custom unlimited revenue recognition only. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"revenueScheduleDate\": \"2013-01-01\",\r\n   \"referenceId\": \"rs transaction ref\",\r\n   \"amount\": \"300\",\r\n   \"overrideChargeAccountingCodes\": \"true\",\r\n   \"recognizedRevenueAccountingCodeType\": \"Sales Revenue\",\r\n   \"recognizedRevenueAccountingCode\": \"Subscription Revenue\",\r\n   \"deferredRevenueAccountingCodeType\": \"Deferred Revenue\",\r\n   \"deferredRevenueAccountingCode\": \"Deferred Revenue\",\r\n   \"cf_project__c\": \"project A\",\r\n   \"cf_phases__c\": \"Phase 1\",\r\n   \"revenueDistributions\": [\r\n      {\r\n         \"accountingPeriodName\": \"Jan'2013\",\r\n         \"newAmount\": \"100\"\r\n         },\r\n      {\r\n         \"accountingPeriodName\": \"Feb'2013\",\r\n         \"newAmount\": \"200\"\r\n         }\r\n      ],\r\n  \"revenueEvent\": {\r\n     \"eventType\": \"Revenue Distributed\",\r\n     \"eventTypeSystemId\": \"1111111\",\r\n     \"notes\": \"Manually distribute revenue by usage\",\r\n     \"cf_project__c\": \"project A\",\r\n     \"cf_phases__c\": \"Phase 1\"\r\n     }\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-schedules/subscription-charges/2c92c0f943977b4f0143b23487ed432e</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      },
+      "get": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Get revenue schedule details of a subscription charge",
+        "description": "This REST API reference describes how to get the revenue schedule details by specifying subscription charge ID. Request and response field descriptions and sample code are provided. ",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"revenueSchedules\": [\r\n   {\r\n      \"number\": \"RS-00000291\",\r\n      \"recognitionRuleName\": \"Recognize upon invoicing\",\r\n      \"amount\": 50,\r\n      \"undistributedUnrecognizedRevenue\": 50,\r\n      \"recognizedRevenue\": 0,\r\n      \"unrecognizedRevenue\": 50,\r\n      \"currency\": \"USD\",\r\n      \"notes\": null,\r\n      \"createdOn\": \"2014-01-21 13:59:25\",\r\n      \"updatedOn\": \"2014-01-21 13:59:25\",\r\n      \"accountId\": \"2c92c0f8439770960143b2141f5a584e\",\r\n      \"subscriptionId\": \"2c92c0f943977b4f0143b23487994327\",\r\n      \"subscriptionChargeId\": \"2c92c0f943977b4f0143b23487ed432e\",\r\n      \"linkedTransactionId\": \"2c92c094439782460143b62c2ee90f5a\",\r\n      \"linkedTransactionType\": \"InvoiceItem\",\r\n      \"referenceId\": null,\r\n      \"revenueScheduleDate\": \"2014-01-21\",\r\n      \"cf_phases__c\": \"Phase 1\",\r\n      \"cf_project__c\": \"project A\",\r\n      \"revenueItems\": [\r\n         {\r\n            \"accountingPeriodName\": \"Open-Ended\",\r\n            \"isAccountingPeriodClosed\": false,\r\n            \"amount\": 50,\r\n            \"currency\": \"USD\",\r\n            \"accountingPeriodStartDate\": \"2013-12-11\",\r\n            \"accountingPeriodEndDate\": null,\r\n            \"recognizedRevenueAccountingCodeType\": null,\r\n            \"recognizedRevenueAccountingCode\": null,\r\n            \"deferredRevenueAccountingCodeType\": null,\r\n            \"deferredRevenueAccountingCode\": null\r\n            }\r\n         ]\r\n      },\r\n   {\r\n      \"number\": \"RS-00000290\",\r\n      \"recognitionRuleName\": \"Recognize upon invoicing\",\r\n      \"amount\": 50,\r\n      \"undistributedUnrecognizedRevenue\": 50,\r\n      \"recognizedRevenue\": 0,\r\n      \"unrecognizedRevenue\": 50,\r\n      \"currency\": \"USD\",\r\n      \"notes\": null,\r\n      \"createdOn\": \"2014-01-21 13:59:25\",\r\n      \"updatedOn\": \"2014-01-21 13:59:25\",\r\n      \"accountId\": \"2c92c0f8439770960143b2141f5a584e\",\r\n      \"subscriptionId\": \"2c92c0f943977b4f0143b23487994327\",\r\n      \"subscriptionChargeId\": \"2c92c0f943977b4f0143b23487ed432e\",\r\n      \"linkedTransactionId\": \"2c92c094439782460143b62c2ee60f59\",\r\n      \"linkedTransactionNumber\": \"INV00000838\",\r\n      \"linkedTransactionType\": \"InvoiceItem\",\r\n      \"referenceId\": null,\r\n      \"revenueScheduleDate\": \"2014-01-21\",\r\n      \"cf_phases__c\": \"Phase 1\",\r\n      \"cf_project__c\": \"project A\",\r\n      \"revenueItems\": [\r\n         {\r\n            \"accountingPeriodName\": \"Open-Ended\",\r\n            \"isAccountingPeriodClosed\": false,\r\n            \"amount\": 50,\r\n            \"currency\": \"USD\",\r\n            \"accountingPeriodStartDate\": \"2013-12-11\",\r\n            \"accountingPeriodEndDate\": null,\r\n            \"recognizedRevenueAccountingCodeType\": null,\r\n            \"recognizedRevenueAccountingCode\": null,\r\n            \"deferredRevenueAccountingCodeType\": null,\r\n            \"deferredRevenueAccountingCode\": null\r\n            }\r\n         ]\r\n      },\r\n\"nextPage\": \"/revenue-schedules/subscription-charges/2c92c0f943977b4f0143b23487ed432e?page=2&amp;pageSize=8\",\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-schedules/subscription-charges/2c92c0f943977b4f0143b23487ed432e</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-schedules/{rs-number}": {
+      "post": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Delete revenue schedule",
+        "description": "This REST API reference describes how to delete a revenue schedule by specifying its revenue schedule number.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-schedules/RS-00000001</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      },
+      "get": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Get revenue schedule details",
+        "description": "This REST API reference describes how to get the details of a revenue schedule by specifying the revenue schedule number. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{    \r\n   \"number\": \"RS-00000008\",\r\n   \"recognitionRuleName\": \"Recognize upon invoicing\",\r\n   \"amount\": 50,\r\n   \"undistributedUnrecognizedRevenue\": -10,\r\n   \"recognizedRevenue\": 0,\r\n   \"unrecognizedRevenue\": 50,\r\n   \"currency\": \"USD\",\r\n   \"notes\": \"change recognition term\",\r\n   \"createdOn\": \"2014-01-20 16:36:45\",\r\n   \"updatedOn\": \"2014-01-28 17:05:52\",\r\n   \"accountId\": \"2c92c0f8439770960143b2141f5a584e\",\r\n   \"subscriptionId\": \"2c92c0f943977b4f0143b23487994327\",\r\n   \"subscriptionChargeId\": \"2c92c0f943977b4f0143b23487ed432e\",\r\n   \"linkedTransactionId\": \"2c92c095439782cd0143b239aa234cf5\",\r\n   \"linkedTransactionType\": \"InvoiceItem\",\r\n   \"referenceId\": null,\r\n   \"revenueScheduleDate\": \"2014-01-20\",\r\n   \"cf_phases__c\": \"Phase 1\", \r\n   \"revenueItems\":  [\r\n      {\r\n         \"accountingPeriodName\": \"Nov'2013\",\r\n         \"isAccountingPeriodClosed\": true,\r\n         \"amount\": 60,\r\n         \"currency\": \"USD\",\r\n         \"accountingPeriodStartDate\": \"2013-10-01\",\r\n         \"accountingPeriodEndDate\": \"2013-10-31\",\r\n         \"recognizedRevenueAccountingCodeType\": \"Revenue: Sales\",\r\n         \"recognizedRevenueAccountingCode\": \"MONTHLY RECURRING CHARGE\",\r\n         \"deferredRevenueAccountingCodeType\": \"Liabilities: Deferred Revenue\",\r\n         \"deferredRevenueAccountingCode\": \"MONTHLY RECURRING CHARGE\",\r\n         }\r\n     {\r\n        \"accountingPeriodName\": \"Open-Ended\",\r\n        \"isAccountingPeriodClosed\": false,\r\n        \"amount\": -10,\r\n        \"currency\": \"USD\",\r\n        \"accountingPeriodStartDate\": \"2013-11-01\",\r\n        \"accountingPeriodEndDate\": null,\r\n        \"recognizedRevenueAccountingCodeType\": \"Revenue: Sales\",\r\n        \"recognizedRevenueAccountingCode\": \"MONTHLY RECURRING CHARGE\",\r\n        \"deferredRevenueAccountingCodeType\": \"Liabilities: Sales\",\r\n        \"deferredRevenueAccountingCode\": \"MONTHLY RECURRING CHARGE\",\r\n        }  \r\n     ],\r\n  \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-schedules/RS-00000008</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-schedules/{rs-number}/distribute-revenue-across-accounting-periods": {
+      "post": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Distribute revenue across accounting periods",
+        "description": "This REST API reference describes how to distribute revenue by specifying the revenue schedule number. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"eventType\": \"Revenue Distributed\",\r\n   \"eventTypeSystemId\": \"RevenueDistributed__z\",\r\n   \"cf_project__c\": \"project A\",\r\n   \"cf_phases__c\": \"Phase 1\",\r\n   \"notes\": \"Manually distribute revenue for Phase 1\",\r\n   \"revenueDistributions\": [\r\n      {\r\n         \"accountingPeriodName\": \"Jan'2013\",\r\n         \"newAmount\": \"500\"\r\n         },\r\n      {\r\n         \"accountingPeriodName\": \"Feb'2013\",\r\n         \"newAmount\": \"600\"\r\n         }\r\n      ]\r\n   }</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-schedules/RS-00000001/distribute-revenue-across-accounting-periods</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-schedules/{rs-number}/distribute-revenue-on-specific-date": {
+      "post": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Distribute revenue on a specific date",
+        "description": "This REST API reference describes how to distribute revenue on a specific recognition date. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"distributionType\": \"specific date (delta fixed amount)\",\r\n   \"eventType\": \"Revenue Distributed\",\r\n   \"eventTypeSystemId\": \"RevenueDistributed__z\",\r\n   \"eventNumber__c\": \"phase 2\"\r\n   \"distributeOn\": \"2016-02-03\",\r\n   \"amount\": \"1000.00\",\r\n   \"notes\": \"service delivered and accepted by customer\"\r\n }</td></tr><tr><td>Sample Request Url</td></tr><tr><td>/revenue-schedules/RS-00000001/</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-schedules/{rs-number}/distribute-revenue-with-date-range": {
+      "post": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Distribute revenue by recognition start and end dates",
+        "description": "This REST API reference describes how to distribute revenue by specifying the recognition start and end dates. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"distributionType\": \"Daily distribution\",\r\n   \"recognitionStart\": \"2015-12-1\",\r\n   \"recognitionEnd\": \"2015-12-31\",\r\n   \"eventType\": \"Revenue Distributed\",\r\n   \"eventTypeSystemId\": \"RevenueDistributed__z\",\r\n   \"notes\": \"manual distribute revenue by usage\",\r\n   \"cf_phases__c\": \"Phase 2\"\r\n }</td></tr><tr><td>Sample Request Url</td></tr><tr><td>/revenue-schedules/RS-00000001/distribute-revenue-with-date-range</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-schedules/invoice-item-adjustments/{invoice-item-adj-id}": {
+      "get": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Get a revenue schedule by invoice item adjustment",
+        "description": "This REST API reference describes how to get the details of a revenue schedule by specifying a valid invoice item adjustment identifier. Request and response field descriptions and sample code are provided. ",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"number\": \"RS-00000273\",\r\n   \"recognitionRuleName\": \"Recognize upon invoicing\",\r\n   \"amount\": -25,\r\n   \"undistributedUnrecognizedRevenue\": -25,\r\n   \"recognizedRevenue\": 0,\r\n   \"unrecognizedRevenue\": -25,\r\n   \"currency\": \"USD\",\r\n   \"notes\": null,\r\n   \"createdOn\": \"2014-01-21 13:52:38\",\r\n   \"updatedOn\": \"2014-01-21 13:52:38\",\r\n   \"accountId\": \"2c92c0f8439770960143b2141f5a584e\",\r\n   \"subscriptionId\": \"2c92c0f943977b4f0143b23487994327\",\r\n   \"subscriptionChargeId\": \"2c92c0f943977b4f0143b23487ed432e\",\r\n   \"linkedTransactionId\": \"2c92c0f8439770a40143b6ca76df205a\",\r\n   \"linkedTransactionNumber\": \"IIA-00000070\",\r\n   \"linkedTransactionType\": \"InvoiceItemAdjustment\",\r\n   \"referenceId\": null,\r\n   \"revenueScheduleDate\": \"2014-01-21\",\r\n   \"cf_phases__c\": \"Phase 1\",\r\n   \"cf_project__c\": \"project A\",\r\n   \"revenueItems\": [\r\n      {\r\n         \"accountingPeriodName\": \"Open-Ended\",\r\n         \"isAccountingPeriodClosed\": false,\r\n         \"amount\": -25,\r\n         \"currency\": \"USD\",\r\n         \"accountingPeriodStartDate\": \"2013-12-11\",\r\n         \"accountingPeriodEndDate\": null,\r\n         \"recognizedRevenueAccountingCodeType\": null,\r\n         \"recognizedRevenueAccountingCode\": null,\r\n         \"deferredRevenueAccountingCodeType\": null,\r\n         \"deferredRevenueAccountingCode\": null\r\n      }\r\n   ],\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-schedules/invoice-item-adjustments/2c92c0f8439770a40143b6ca76df205a&#8203;</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/revenue-schedules/{rs-number}/basic-information": {
+      "post": {
+        "tags": [
+          "Revenue Schedules "
+        ],
+        "summary": "Update revenue schedule basic information",
+        "description": "This REST API reference describes how to get basic information of a revenue schedule by specifying the revenue schedule number. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\r\n   \"notes\": \"change recognition term\",\r\n   \"referenceId\": \"Reference ID\",\r\n   \"cf_phases__c\": \"Phase 1\"\r\n}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n\"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/revenue-schedules/RS-00000001/basic-information</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/subscriptions": {
+      "post": {
+        "tags": [
+          "Subscriptions "
+        ],
+        "summary": "Create subscription",
+        "description": "This REST API reference describes how to create a new subscription for an existing customer account.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\r\n  \"renewalTerm\": \"3\",\r\n  \"renewalTermPeriodType\": \"Week\",\r\n  \"termType\": \"TERMED\",\r\n  \"autoRenew\": true,\r\n  \"invoiceTargetDate\": \"2015-12-31\",\r\n  \"accountKey\": \"A00001115\",\r\n  \"contractEffectiveDate\": \"2015-02-1\",\r\n  \"subscribeToRatePlans\":\r\n\t[\r\n\t {\r\n       \"chargeOverrides\":\r\n\t   \t  [\r\n\t        {\r\n\t       \t  \"productRatePlanChargeId\": \"ff8080811ca15d19011cddad8c953b53\",\r\n\t       \t  \"price\": 12.01,\r\n\t       \t  \"number\":\"TestCharge\",\r\n\t       \t  \"description\":\"This is rate plan charge description\",\r\n\t       \t  \"triggerEvent\":\"SpecificDate\",\r\n\t       \t  \"triggerDate\":\"2015-09-01\",\r\n\r\n\t       \t  \"billingTiming\":\"IN_ARREARS\",\r\n\t       \t  \"billCycleType\":\"SpecificDayofMonth\",\r\n\t       \t  \"billCycleDay\":\"5\",\r\n\t       \t  \"billingPeriodAlignment\":\"AlignToCharge\",\r\n\t       \t  \"myCustomField__c\" : \"test\"\r\n\t       \t\t}\r\n\t       ],\r\n\t    \"productRatePlanId\": \"ff8080811ca15d19011cdda9b0ad3b51\"}\r\n\t],\r\n  \"invoice\": true,\r\n  \"collect\": false,\r\n  \"initialTerm\": \"12\",\r\n  \"initialTermPeriodType\": \"Week\",\r\n  \"notes\": \"Test POST subscription from z-ruby-sdk\",\r\n  \"myCustomField__c\" : \"test\"\r\n}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n   \"success\": true,\r\n   \"subscriptionId\": \"402890fc4fa094d5014fa0a4aa78001d\",\r\n   \"subscriptionNumber\": \"A-S00000041\",\r\n   \"contractedMrr\": 1950,\r\n   \"totalContractedValue\": 6227.41935465\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/subscriptions</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/subscriptions/accounts/{account-key}": {
+      "get": {
+        "tags": [
+          "Subscriptions "
+        ],
+        "summary": "Get subscriptions by account",
+        "description": "Retrieves all subscriptions associated with the specified account.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\n \"subscriptions\" : [ {\n    \"id\": \"402890314fcfc93e014fd051d3c50022\",\n    \"accountId\": \"402890314fcf05a0014fcf087e690003\",\n    \"accountNumber\": \"A00000001\",\n    \"accountName\": \"MyAcctName\",\n    \"subscriptionNumber\": \"A-S00000003\",\n    \"termType\": \"TERMED\",\n    \"contractEffectiveDate\": \"2015-09-15\",\n    \"serviceActivationDate\": \"2015-09-15\",\n    \"customerAcceptanceDate\": \"2015-09-15\",\n    \"subscriptionStartDate\": \"2015-09-15\",\n    \"termStartDate\": \"2015-09-15\",\n    \"termEndDate\": \"2019-11-15\",\n    \"initialTerm\": 50,\n    \"initialTermPeriodType\": \"Week\",\n    \"currentTerm\": 12,\n    \"currentTermPeriodType\": \"Week\",\n    \"autoRenew\": false,\n    \"renewalSetting\": \"RENEW_WITH_SPECIFIC_TERM\",\n    \"renewalTerm\": 0,\n    \"renewalTermPeriodType\": \"Week\",\n    \"contractedMrr\": 360,\n    \"totalContractedValue\": 18000,\n    \"notes\": \"\",\n    \"status\": \"Active\",\n    \"ratePlans\": [\n        {\n            \"id\": \"402890314fcfc93e014fd051d3f7002d\",\n            \"productId\": \"402890314fcb13c9014fcb22a2230002\",\n            \"productName\": \"Volume Product\",\n            \"productRatePlanId\": \"402890314fcb13c9014fcb22d38b0004\",\n            \"ratePlanName\": \"New Rate Plan\",\n            \"ratePlanCharges\": [\n                {\n                    \"originalChargeId\": \"402890314fcfc93e014fd051d40d002e\",\n                    \"productRatePlanChargeId\": \"402890314fcb13c9014fcb2382b50011\",\n                    \"number\": \"C-00000002\",\n                    \"name\": \"New Component\",\n                    \"type\": \"Recurring\",\n                    \"model\": \"Volume\",\n                    \"uom\": \"Each\",\n                    \"version\": 1,\n                    \"billingDay\": \"DefaultFromCustomer\",\n                    \"listPriceBase\": \"Per_Billing_Period\",\n                    \"billingPeriod\": \"Month\",\n                    \"specificBillingPeriod\": null,\n                    \"smoothingModel\": null,\n                    \"numberOfPeriods\": null,\n                    \"overageCalculationOption\": null,\n                    \"overageUnusedUnitsCreditOption\": null,\n                    \"unusedUnitsCreditRates\": null,\n                    \"usageRecordRatingOption\": null,\n                    \"chargeSegments\": [\n                        {\n                            \"id\": \"402890314fcfc93e014fd051d40d002e\",\n                            \"pricingSummary\": \"Up to 10 Each: USD60/Each;  Up to 20 Each: USD50/Each\",\n                            \"priceChangeOption\": \"SpecificPercentageValue\",\n                            \"priceIncreasePercentage\": 10,\n                            \"currency\": \"USD\",\n                            \"price\": null,\n                            \"tiers\": [\n                                {\n                                    \"tier\": 1,\n                                    \"startingUnit\": 1,\n                                    \"endingUnit\": 10,\n                                    \"price\": 60,\n                                    \"priceFormat\": \"PerUnit\"\n                                },\n                                {\n                                    \"tier\": 2,\n                                    \"startingUnit\": 11,\n                                    \"endingUnit\": 20,\n                                    \"price\": 50,\n                                    \"priceFormat\": \"PerUnit\"\n                                }\n                            ],\n                            \"includedUnits\": null,\n                            \"overagePrice\": null,\n                            \"discountPercentage\": null,\n                            \"discountAmount\": null,\n                            \"applyDiscountTo\": null,\n                            \"discountLevel\": null,\n                            \"billingPeriodAlignment\": \"AlignToCharge\",\n                            \"quantity\": 6,\n                            \"segment\": 1,\n                            \"effectiveStartDate\": \"2015-09-15\",\n                            \"effectiveEndDate\": \"2019-11-15\",\n                            \"processedThroughDate\": null,\n                            \"chargedThroughDate\": null,\n                            \"done\": false,\n                            \"triggerDate\": null,\n                            \"triggerEvent\": \"ContractEffective\",\n                            \"endDateCondition\" : \"One_Time\",\n                            \"upToPeriodsType\": null,\n                            \"upToPeriods\": null,\n                            \"specificEndDate\" : null,\n                            \"mrr\": 360,\n                            \"dmrc\": 360,\n                            \"tcv\": 18000,\n                            \"dtcv\": 18000,\n                            \"description\": \"\"\n                        }\n                    ]\n                },\n                {\n                    \"originalChargeId\": \"402890314fcfc93e014fd051d41a002f\",\n                    \"productRatePlanChargeId\": \"402890314fcfc93e014fd05040250018\",\n                    \"number\": \"C-00000003\",\n                    \"name\": \"New Component\",\n                    \"type\": \"Usage\",\n                    \"model\": \"TieredWithOverage\",\n                    \"uom\": \"Each\",\n                    \"version\": 1,\n                    \"billingDay\": \"DefaultFromCustomer\",\n                    \"listPriceBase\": null,\n                    \"billingPeriod\": \"Month\",\n                    \"specificBillingPeriod\": null,\n                    \"smoothingModel\": \"RollingWindow\",\n                    \"numberOfPeriods\": 6,\n                    \"overageCalculationOption\": \"EndOfSmoothingPeriod\",\n                    \"overageUnusedUnitsCreditOption\": null,\n                    \"unusedUnitsCreditRates\": null,\n                    \"usageRecordRatingOption\": null,\n                    \"chargeSegments\": [\n                        {\n                            \"id\": \"402890314fcfc93e014fd051d41a002f\",\n                            \"pricingSummary\": \"1 to 10 Each: USD60 flat fee;  11 to 20 Each: USD50 flat fee;  21 to 30 Each: USD40 flat fee, thereafter USD35 per exceeding unit\",\n                            \"priceChangeOption\": \"SpecificPercentageValue\",\n                            \"priceIncreasePercentage\": 5,\n                            \"currency\": \"USD\",\n                            \"price\": null,\n                            \"tiers\": [\n                                {\n                                    \"tier\": 1,\n                                    \"startingUnit\": 1,\n                                    \"endingUnit\": 10,\n                                    \"price\": 60,\n                                    \"priceFormat\": \"FlatFee\"\n                                },\n                                {\n                                    \"tier\": 2,\n                                    \"startingUnit\": 11,\n                                    \"endingUnit\": 20,\n                                    \"price\": 50,\n                                    \"priceFormat\": \"FlatFee\"\n                                },\n                                {\n                                    \"tier\": 3,\n                                    \"startingUnit\": 21,\n                                    \"endingUnit\": 30,\n                                    \"price\": 40,\n                                    \"priceFormat\": \"FlatFee\"\n                                }\n                            ],\n                            \"includedUnits\": null,\n                            \"overagePrice\": 35,\n                            \"discountPercentage\": null,\n                            \"discountAmount\": null,\n                            \"applyDiscountTo\": null,\n                            \"discountLevel\": null,\n                            \"billingPeriodAlignment\": \"AlignToCharge\",\n                            \"quantity\": null,\n                            \"segment\": 1,\n                            \"effectiveStartDate\": \"2015-09-15\",\n                            \"effectiveEndDate\": \"2019-11-15\",\n                            \"processedThroughDate\": null,\n                            \"chargedThroughDate\": null,\n                            \"done\": false,\n                            \"triggerDate\": null,\n                            \"triggerEvent\": \"ContractEffective\",\n                            \"endDateCondition\" : \"One_Time\",\n                            \"upToPeriodsType\": null,\n                            \"upToPeriods\": null,\n                            \"specificEndDate\" : null,\n                            \"mrr\": null,\n                            \"dmrc\": null,\n                            \"tcv\": null,\n                            \"dtcv\": null,\n                            \"description\": \"\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ],\n  \"success\" : true, }\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td></td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/subscriptions/{subscription-key}": {
+      "post": {
+        "tags": [
+          "Subscriptions "
+        ],
+        "summary": "Update subscription",
+        "description": " ",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\"renewalTerm\": \"4\",\n\"renewalTermPeriodType\": \"Month\",\n\"termType\": \"TERMED\",\n\"autoRenew\": false,\n\"renewalSetting\": \"RENEW_WITH_SPECIFIC_TERM\",\n\"currentTerm\": \"10\",\n\"currentTermPeriodType\": \"Month\",\n\"update\":\n  [{\"ratePlanId\": \"2c92c8f83dcbd8b1013dcce0ea7e006f\",\n    \"contractEffectiveDate\": \"2013-04-28\",\n    \"chargeUpdateDetails\":\n     [{\"ratePlanChargeId\": \"2c92c8f83dcbd8b1013dcce0eb510075\",\n       \"quantity\": 12}]}],\n\"notes\": \"Test UPDATE subscription from z-ruby-sdk\",\n\"myCustomField__c\" : \"test\",\n\"invoice\": true,\n\"collect\": false\n}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{\n  \"success\" : true,\n  \"subscriptionId\" : \"4028bb83510f8ed7015114a503cf0373\",\n  \"totalDeltaMrr\" : 100.000000000,\n  \"totalDeltaTcv\" : 4867.741935500\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/subscriptions/A-S00001084</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      },
+      "get": {
+        "tags": [
+          "Subscriptions "
+        ],
+        "summary": "Get subscriptions by key",
+        "description": "This REST API reference describes how to retrieve detailed information about a specified subscription.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\n  \"success\" : true,\n  \"id\" : \"2c9081a03c63c94c013c687b864e0195\",\n  \"accountId\" : \"2c9081a03c63c94c013c66688a2c00bf\",\n  \"accountNumber\" : \"RestAPI\",\n  \"accountName\" : \"RestAPI\",\n  \"subscriptionNumber\" : \"A-S00000004\",\n  \"termType\" : \"TERMED\",\n  \"contractEffectiveDate\" : \"2012-02-01\",\n  \"serviceActivationDate\" : \"2012-02-01\",\n  \"customerAcceptanceDate\" : \"2012-02-01\",\n  \"subscriptionStartDate\" : \"2012-02-01\",\n  \"termStartDate\" : \"2012-02-01\",\n  \"termEndDate\" : \"2013-02-01\",\n  \"initialTermPeriodType\": \"Week\",\n  \"currentTerm\": 12,\n  \"currentTermPeriodType\": \"Week\",\n  \"autoRenew\": false,\n  \"renewalSetting\": \"RENEW_WITH_SPECIFIC_TERM\",\n  \"renewalTerm\": 0,\n  \"renewalTermPeriodType\": \"Week\",\n  \"contractedMrr\" : 26.67,\n  \"totalContractedValue\" : 404.00,\n  \"notes\" : \"\",\n  \"status\" : \"Active\",\n  \"ratePlans\" : [ {\n    \"id\" : \"2c9081a03c63c94c013c687b868901a4\",\n    \"productId\" : \"2c9081a03c63c94c013c66499ef0001b\",\n    \"productName\" : \"OneTime\",\n    \"productRatePlanId\" : \"2c9081a03c63c94c013c665102e5003a\",\n    \"ratePlanName\" : \"OT_Tiered\",\n    \"ratePlanCharges\" : [ {\n      \"id\" : \"2c9081a03c63c94c013c687b868901a5\",\n      \"originalChargeId\" : \"2c9081a03c63c94c013c687a92d70175\",\n      \"productRatePlanChargeId\" : \"2c9081a03c63c94c013c6651d677003c\",\n      \"number\" : \"C-00000010\",\n      \"name\" : \"OT_Tiered\",\n      \"type\" : \"OneTime\",\n      \"model\" : \"Tiered\",\n      \"uom\" : \"Each\",\n      \"version\" : 1,\n      \"pricingSummary\" : \"0 to 10 Each: USD20 flat fee;  11 Each or more: USD4/Each\",\n      \"priceChangeOption\" : null,\n      \"priceIncreasePercentage\" : null,\n      \"currency\" : \"USD\",\n      \"price\" : null,\n      \"tiers\" : [ {\n        \"tier\" : 1,\n        \"startingUnit\" : 0E-9,\n        \"endingUnit\" : 10.000000000,\n        \"price\" : 20.000000000,\n        \"priceFormat\" : \"FlatFee\"\n      }, {\n        \"tier\" : 2,\n        \"startingUnit\" : 11.000000000,\n        \"endingUnit\" : null,\n        \"price\" : 4.000000000,\n        \"priceFormat\" : \"PerUnit\"\n      } ],\n      \"includedUnits\" : null,\n      \"overagePrice\" : null,\n      \"discountPercentage\" : null,\n      \"discountAmount\" : null,\n      \"applyDiscountTo\" : null,\n      \"discountLevel\" : null,\n      \"billingDay\" : null,\n      \"listPriceBase\" : null,\n      \"billingPeriod\" : null,\n      \"specificBillingPeriod\" : null,\n      \"billingTiming\" : null,\n      \"billingPeriodAlignment\" : null,\n      \"quantity\" : 11.000000000,\n      \"smoothingModel\" : null,\n      \"numberOfPeriods\" : null,\n      \"overageCalculationOption\" : null,\n      \"overageUnusedUnitsCreditOption\" : null,\n      \"unusedUnitsCreditRates\" : null,\n      \"usageRecordRatingOption\" : null,\n      \"segment\" : 1,\n      \"effectiveStartDate\" : \"2012-02-01\",\n      \"effectiveEndDate\" : \"2012-02-02\",\n      \"processedThroughDate\" : \"2012-02-02\",\n      \"chargedThroughDate\" : \"2012-02-02\",\n      \"done\" : true,\n      \"triggerDate\" : null,\n      \"triggerEvent\" : \"ContractEffective\",\n      \"endDateCondition\" : \"One_Time\",\n      \"upToPeriodsType\" : null,\n      \"upToPeriods\" : null,\n      \"specificEndDate\" : null,\n      \"mrr\" : null,\n      \"dmrc\" : null,\n      \"tcv\" : 24.000000000,\n      \"dtcv\" : 24.000000000,\n      \"description\" : \"\",\n      \"pecker__c\" : \"good\",\n      \"point__c\" : \"6\"\n    } ]\n  }, ]\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td></td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/subscriptions/{subscription-key}/renew": {
+      "post": {
+        "tags": [
+          "Subscriptions "
+        ],
+        "summary": "Renew subscription",
+        "description": "Renews a termed subscription using existing renewal terms.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\r\n  \"invoice\": true,\r\n  \"collect\": false\r\n}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"termStartDate\": \"2014-02-01\",\r\n  \"success\": true,\r\n  \"termEndDate\": \"2014-05-01\",\r\n  \"subscriptionId\": \"2c92c8f83dcbd8b1013dcce0f09100a5\"\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/subscriptions/A-S00001084/rene</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/subscriptions/{subscription-key}/cancel": {
+      "post": {
+        "tags": [
+          "Subscriptions "
+        ],
+        "summary": "Cancel subscription",
+        "description": "This REST API reference describes how to cancel an active subscription",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\r\n  \"cancellationPolicy\": \"EndOfCurrentTerm\",\r\n  \"invoiceCollect\": false,\r\n  \"cancellationEffectiveDate\": \"2013-05-31\",\r\n  \"invoice\": true,\r\n  \"collect\": false\r\n}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"cancelledDate\": \"2014-05-01\",\r\n  \"success\": true,\r\n  \"subscriptionId\": \"2c92c8f83dcbd8b1013dcce0f23400ba\"\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/subscriptions/A-S00001084/cancel</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/subscriptions/{subscription-key}/resume": {
+      "post": {
+        "tags": [
+          "Subscriptions "
+        ],
+        "summary": "Resume Subscription",
+        "description": "This feature is in Limited Availability. If you wish to have access to the feature, submit a request at Zuora Global Support. ",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\n  \"contractEffectiveDate\": \"2019-02-01\",\n  \"resumePolicy\": \"SpecificDate\",\n  \"resumeSpecificDate\":\"2019-10-01\",\n  \"extendsTerm\":true,\n  \"invoice\": true,\n  \"collect\": false\n}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{\n  \"success\": true,\n  \"subscriptionId\": \"8a8082c4539c5bcc0153a752f9c87094\",\n  \"resumeDate\": \"2019-10-01\",\n  \"termEndDate\": \"2020-01-31\",\n  \"totalDeltaTcv\": 396.7741935\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/subscriptions/A-S00001084/resume</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/subscriptions/{subscription-key}/suspend": {
+      "post": {
+        "tags": [
+          "Subscriptions "
+        ],
+        "summary": "Suspend Subscription",
+        "description": "This feature is in Limited Availability. If you wish to have access to the feature, submit a request at Zuora Global Support. ",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\n  \"contractEffectiveDate\": \"2019-02-01\",\n  \"suspendPolicy\": \"FixedPeriodsFromToday\",\n  \"suspendPeriods\":10,\n  \"suspendPeriodsType\":\"Day\",\n  \"resume\":true,\n  \"resumePolicy\": \"SpecificDate\",\n  \"resumeSpecificDate\":\"2019-06-01\",\n  \"extendsTerm\":true,\n  \"invoice\": true,\n  \"collect\": false\n}</td></tr><tr><td>Response Sample  </td></tr><tr><td>{ \n  \"success\" : true, \n  \"subscriptionId\" : \"8a8082c4539c5bcc0153a658a9636fcc\", \n  \"suspendDate\" : \"2019-05-01\", \n  \"resumeDate\" : \"2016-06-01\", \n  \"termEndDate\" : \"2020-02-01\", \n  \"totalDeltaTcv\" : -896.666666700,\n  \"invoiceId\" : \"8a8082c453bb061f0153c529bc921b4b\"\n  }</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/subscriptions/A-S00001084/suspend</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/journal-entries": {
+      "post": {
+        "tags": [
+          "Summary Journal Entries "
+        ],
+        "summary": "Create Summary Journal Entry",
+        "description": "This REST API reference describes how to manually create a summary journal entry. Request and response field descriptions and sample code are provided. ",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\n\"notes\":\"my account\",\n\"journalEntryDate\":\"2014-09-09\",\n\"accountingPeriodName\":\"Nov-2014\",\n\"transferredToAccounting\":\"No\",\n\"currency\":\"USD\",\n\"cf_txt1__c\":\"1000001\",\n\"cf_txt2__c\":\"2014-11-01\",\n\"cf_pk1__c\":\"CreditCard\",\n\"cf_pk2__c\":\"John Smith\",\n\"segments\":[\n       {  \"segmentName\":\"billToCountry\",\n          \"segmentValue\":\"United States\"},\n       {  \"segmentName\":\"billToState\",\n          \"segmentValue\":\"California\"}\n ],\n \"journalEntryItems\":[\n         {  \"accountingCodeType\":\"Deferred Revenue\",\n            \"accountingCodeName\":\"Accounts Receivable\", \n             \"type\":\"Credit\",\n             \"amount\":\"400.9\",\n             \"homeCurrencyAmount\":\"801.8\"},\n         {  \"accountingCodeType\":\"Sales Revenue\",\n            \"accountingCodeName\":\"Subscription Revenue\", \n             \"type\":\"Debit\",\n             \"amount\":\"400.9\",\n             \"homeCurrencyAmount\":\"801.8\"}\n        ]\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/journal-entries</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/journal-entries/{je-number}/cancel": {
+      "put": {
+        "tags": [
+          "Summary Journal Entries "
+        ],
+        "summary": "Cancel Summary Journal Entry",
+        "description": "This reference describes how to cancel a summary journal entry using the REST API.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>PUT&nbsphttps://api.zuora.com/rest/v1/journal-entries/JE-00000001/cancel</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/journal-entries/{je-number}": {
+      "post": {
+        "tags": [
+          "Summary Journal Entries "
+        ],
+        "summary": "Delete Summary Journal Entry",
+        "description": "This reference describes how to delete a summary journal entry using the REST API.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>DELETE&nbsphttps://api.zuora.com/rest/v1/journal-entries/JE-00000001</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      },
+      "get": {
+        "tags": [
+          "Summary Journal Entries "
+        ],
+        "summary": "Get Summary Journal Entry Information",
+        "description": "This REST API reference describes how to get information about a summary journal entry by its journal entry number.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"number\": \"JE-00000001\",\r\n    \"status\": \"Created\",\r\n    \"journalEntryDate\": \"2016-10-31\",\r\n    \"currency\": \"USD\",\r\n    \"homeCurrency\": null,\r\n    \"transactionType\": Invoice Item,\r\n    \"accountingPeriodName\": \"2016-10\",\r\n    \"timePeriodStart\": \"2016-10-01\",\r\n    \"timePeriodEnd\": \"2016-10-31\",\r\n    \"transferredToAccounting\": \"Yes\",\r\n    \"transferredBy\": \"402881e522cf4f9b0122cf5d82860002\",\r\n    \"transferDateTime\": \"2016-11-01 10:00:00\",\r\n    \"notes\": \"notes\",\r\n    \"cf_txt1__c\":\"1000001\",\r\n    \"cf_txtn__c\":\"2016-11-01\",\r\n    \"cf_pk1__c\":\"CreditCard\",\r\n    \"cf_pkn__c\":\"John\"\r\n    \"segments\": [\r\n        {\r\n            \"segmentName\": \"country\",\r\n            \"segmentValue\": \"United States\"\r\n        }\r\n    ],\r\n    \"journalEntryItems\": [\r\n        {\r\n            \"accountingCodeType\": \"Cash\",\r\n            \"accountingCodeName\": \"Cash\",\r\n            \"glAccountName\": \"Cash\",\r\n            \"glAccountNumber\": \"10-001-000-5000\",\r\n            \"type\": \"Debit\",\r\n            \"homeCurrencyAmount\": null,\r\n            \"amount\": 100,\r\n            \"cf_txt1__c\":\"1000001\",\r\n            \"cf_txtn__c\":\"2016-11-01\",\r\n            \"cf_pk1__c\":\"CreditCard\",\r\n            \"cf_pkn__c\":\"John\"\r\n        },\r\n        {\r\n            \"accountingCodeType\": \"AccountsReceivable\",\r\n            \"accountingCodeName\": \"Accounts Receivable\",\r\n            \"glAccountName\": \"Accounts Receivable\",\r\n            \"glAccountNumber\": \"10-001-000-1234\",\r\n            \"type\": \"Credit\",\r\n            \"homeCurrencyAmount\": null,\r\n            \"amount\": 100,\r\n            \"cf_txt1__c\":\"1000001\",\r\n            \"cf_txtn__c\":\"2016-11-01\",\r\n            \"cf_pk1__c\":\"CreditCard\",\r\n            \"cf_pkn__c\":\"John\"\r\n        }\r\n    ],\r\n    \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/journal-entries/JE-00000001</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/journal-entries/journal-runs/{jr-number}": {
+      "get": {
+        "tags": [
+          "Summary Journal Entries "
+        ],
+        "summary": "Get All Summary Journal Entries in a Journal Run",
+        "description": "This REST API reference describes how to retrieve information about all summary journal entries in a journal run.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"success\": true,\r\n    \"journalEntries\": [{\r\n        \"number\": \"JE-00000006\",\r\n        \"status\": \"Created\",\r\n        \"journalEntryDate\": \"2016-12-31\",\r\n        \"currency\": \"USD\",\r\n        \"homeCurrency\": \"USD\",\r\n        \"transactionType\": \"Invoice Item\",\r\n        \"timePeriodStart\": \"2016-12-01\",\r\n        \"timePeriodEnd\": \"2016-12-31\",\r\n        \"transferredToAccounting\": \"No\",\r\n        \"notes\": \"note\",\r\n        \"cf_txt1__c\": \"custom text\",\r\n        \"segments\": [{\r\n            \"segmentName\": \"Seg1\",\r\n            \"segmentValue\": \"seg value\"\r\n        }],\r\n        \"journalEntryItems\": [{\r\n            \"accountingCodeType\": \"AccountsReceivable\",\r\n            \"accountingCodeName\": \"Accounts Receivable\",\r\n            \"glAccountName\": \"Accounts Receivable\",\r\n            \"glAccountNumber\": \"10-001-000-1234\",\r\n            \"type\": \"Debit\",\r\n            \"amount\": 100.00,\r\n            \"homeCurrencyAmount\": 100.00\r\n        }, {\r\n            \"accountingCodeType\": \"SalesRevenue\",\r\n            \"accountingCodeName\": \"Sales Revenue\",\r\n            \"glAccountName\": \"Sales Revenue\",\r\n            \"glAccountNumber\": \"10-001-000-1000\",\r\n            \"type\": \"Credit\",\r\n            \"amount\": 100.00,\r\n            \"homeCurrencyAmount\": 100.00\r\n        }]\r\n    }]\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/journal-entries/journal-runs/JR-00000001</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/journal-entries/{je-number}/basic-information": {
+      "post": {
+        "tags": [
+          "Summary Journal Entries "
+        ],
+        "summary": "Update Basic Information of a Summary Journal Entry",
+        "description": "This REST API reference describes how to update the basic information of a summary journal entry. Request and response field descriptions and sample code are provided.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n \"transferredToAccounting\": \"Yes\",\r\n \"notes\": \"Transfer to accounting system\",\r\n \"cf_issueNumber__c\": \"1000001\",\r\n \"journalEntryItems\":[\r\n         {  \"accountingCodeName\":\"Accounts Receivable\", \r\n            \"type\":\"Credit\",\r\n            \"cf_phases__c\":\"Phase 1\",\r\n         },\r\n         {  \"accountingCodeName\":\"\", \r\n            \"type\":\"Debit\",\r\n            \"cf_phases__c\":\"Phase 1\",\r\n         }\r\n  ]\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/journal-entries/JR-00000001/basic-information</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/transactions/payments/accounts/{account-key}": {
+      "get": {
+        "tags": [
+          "Transactions "
+        ],
+        "summary": "Get payments",
+        "description": "Retrieves payments for a specified account.  ",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"success\": true,\r\n  \"payments\": [\r\n    {\r\n      \"paymentMethodId\": \"2c92c8f83dabf9cf013daef12dd303b0\",\r\n      \"paidInvoices\": [\r\n        {\r\n          \"invoiceId\": \"2c92a09539190dbe0139190f42780012\",\r\n          \"invoiceNumber\": \"INV00000159\",\r\n          \"appliedPaymentAmount\": 5.0\r\n        },\r\n        {\r\n          \"invoiceId\": \"2c92a0953a3fa95d013a407c10a60100\",\r\n          \"invoiceNumber\": \"INV00000323\",\r\n          \"appliedPaymentAmount\": 139722.1\r\n        },\r\n        {\r\n          \"invoiceId\": \"2c92a09739190dc60139194bcf1b0098\",\r\n          \"invoiceNumber\": \"INV00000160\",\r\n          \"appliedPaymentAmount\": 10521.0\r\n        }\r\n      ],\r\n      \"effectiveDate\": \"2013-03-27\",\r\n      \"accountId\": \"2c92a0f9391832b10139183e277a0042\",\r\n      \"accountName\": \"subscribeCallYan_1\",\r\n      \"id\": \"2c92c8f83dabf9cf013daf3bfa0305a6\",\r\n      \"status\": \"Processed\",\r\n      \"paymentNumber\": \"P-00000075\",\r\n      \"gatewayTransactionNumber\": null,\r\n      \"type\": \"Electronic\",\r\n      \"accountNumber\": \"A00001115\",\r\n      \"amount\": 150248.1\r\n    },\r\n    {\r\n      \"paymentMethodId\": \"2c92a0f9391832b10139183e279e0044\",\r\n      \"paidInvoices\": [\r\n        {\r\n          \"invoiceId\": \"2c92a09539190dbe0139190f42780012\",\r\n          \"invoiceNumber\": \"INV00000159\",\r\n          \"appliedPaymentAmount\": 5.0\r\n        }\r\n      ],\r\n      \"effectiveDate\": \"2012-08-11\",\r\n      \"accountId\": \"2c92a0f9391832b10139183e277a0042\",\r\n      \"accountName\": \"subscribeCallYan_1\",\r\n      \"id\": \"2c92a0f9391832b101391922ad5f049d\",\r\n      \"status\": \"Processed\",\r\n      \"paymentNumber\": \"P-00000056\",\r\n      \"gatewayTransactionNumber\": null,\r\n      \"type\": \"Electronic\",\r\n      \"accountNumber\": \"A00001115\",\r\n      \"amount\": 5.0\r\n    }\r\n  ]\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/transa...15?pageSize=10</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/operations/invoice-collect": {
+      "post": {
+        "tags": [
+          "Transactions "
+        ],
+        "summary": "Invoice and collect",
+        "description": "Generates invoices and collects payments for a specified account.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td>{\r\n  \"accountKey\":\"4028925a4cb74ec9014cb7520fc00005\", \r\n  \"invoiceId\":\"4028925a4cb74ec9014cb7540988002e\", \r\n  \"paymentGateway\": \"TestGateway \" }</td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n    \"invoices\": [\r\n        {\r\n            \"invoiceId\": \"4028925a4cb74ec9014cb7540988002e\",\r\n            \"invoiceNumber\": \"INV00000091\",\r\n            \"invoiceAmount\": 801.73\r\n        }\r\n    ],\r\n    \"paymentId\": \"402892053e100406013e1024ab7c00e3\",\r\n    \"amountCollected\": 801.73,\r\n    \"success\": true\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/operations/invoice-collect</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/usage": {
+      "post": {
+        "tags": [
+          "Usage "
+        ],
+        "summary": "Post usage",
+        "description": "This REST API reference describes how to post or import usage data for one or more accounts in the CSV format. There are no path or query parameters. The data is uploaded using the HTTP multipart/form-data POST method and applied to the user's tenant. ",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>##\r\n## Upload Usage\r\n##\r\necho\r\necho \"=============Upload Usage============\"\r\necho\r\n# Don't forget add '@' before the file name.\r\ncurl -i -k -H \"apiAccessKeyId:$USER_NAME\" -H \"apiSecretAccessKey:$PASSWORD\" -H \"Accept:application/json\" --form \"file=@UsageFileFormat.csv\" -X POST $BASE_URL/v1/usage</td></tr><tr><td>Sample Request Url</td></tr><tr><td>/usage</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/usage/accounts/{account-key}": {
+      "get": {
+        "tags": [
+          "Usage "
+        ],
+        "summary": "Get usage",
+        "description": "This REST API reference describes how to retrieve usage details for an account. Usage data is returned in reverse chronological order.",
+        "externalDocs": {
+          "description": "<table><tr><td>Request Sample</td></tr><tr><td></td></tr><tr><td>Response Sample  </td></tr><tr><td>{\r\n  \"usage\": [\r\n    {\r\n      \"chargeNumber\": null,\r\n      \"sourceName\": \"Import\",\r\n      \"quantity\": 4.0,\r\n      \"unitOfMeasure\": \"UOM\",\r\n      \"accountName\": \"subscribeCallYan_1\",\r\n      \"id\": \"2c92c8953dac2b1c013dae0a263f35dd\",\r\n      \"subscriptionNumber\": null,\r\n      \"startDateTime\": \"2012-02-05 00:00:00\",\r\n      \"accountNumber\": \"A00001115\",\r\n      \"status\": \"Pending\",\r\n      \"submissionDateTime\": \"2013-03-27 15:48:53\",\r\n      \"accountId\": \"2c92a0f9391832b10139183e277a0042\"\r\n    },\r\n    {\r\n      \"chargeNumber\": null,\r\n      \"sourceName\": \"Import\",\r\n      \"quantity\": 4.0,\r\n      \"unitOfMeasure\": \"UOM\",\r\n      \"accountName\": \"subscribeCallYan_1\",\r\n      \"id\": \"2c92c8943db2ae51013dcce116b00f4b\",\r\n      \"subscriptionNumber\": null,\r\n      \"startDateTime\": \"2012-02-05 00:00:00\",\r\n      \"accountNumber\": \"A00001115\",\r\n      \"status\": \"Pending\",\r\n      \"submissionDateTime\": \"2013-04-02 15:32:16\",\r\n      \"accountId\": \"2c92a0f9391832b10139183e277a0042\"\r\n    },\r\n    {\r\n      \"chargeNumber\": null,\r\n      \"sourceName\": \"Import\",\r\n      \"quantity\": 3.0,\r\n      \"unitOfMeasure\": \"UOM\",\r\n      \"accountName\": \"subscribeCallYan_1\",\r\n      \"id\": \"2c92c8953dac2b1c013dae0a263f35dc\",\r\n      \"subscriptionNumber\": null,\r\n      \"startDateTime\": \"2012-02-04 00:00:00\",\r\n      \"accountNumber\": \"A00001115\",\r\n      \"status\": \"Pending\",\r\n      \"submissionDateTime\": \"2013-03-27 15:48:53\",\r\n      \"accountId\": \"2c92a0f9391832b10139183e277a0042\"\r\n    },\r\n    {\r\n      \"chargeNumber\": null,\r\n      \"sourceName\": \"Import\",\r\n      \"quantity\": 3.0,\r\n      \"unitOfMeasure\": \"UOM\",\r\n      \"accountName\": \"subscribeCallYan_1\",\r\n      \"id\": \"2c92c8943db2ae51013dcce116b00f4a\",\r\n      \"subscriptionNumber\": null,\r\n      \"startDateTime\": \"2012-02-04 00:00:00\",\r\n      \"accountNumber\": \"A00001115\",\r\n      \"status\": \"Pending\",\r\n      \"submissionDateTime\": \"2013-04-02 15:32:16\",\r\n      \"accountId\": \"2c92a0f9391832b10139183e277a0042\"\r\n    },\r\n    {\r\n      \"chargeNumber\": null,\r\n      \"sourceName\": \"Import\",\r\n      \"quantity\": 2.0,\r\n      \"unitOfMeasure\": \"UOM\",\r\n      \"accountName\": \"subscribeCallYan_1\",\r\n      \"id\": \"2c92c8953dac2b1c013dae0a263e35db\",\r\n      \"subscriptionNumber\": null,\r\n      \"startDateTime\": \"2012-02-03 00:00:00\",\r\n      \"accountNumber\": \"A00001115\",\r\n      \"status\": \"Pending\",\r\n      \"submissionDateTime\": \"2013-03-27 15:48:53\",\r\n      \"accountId\": \"2c92a0f9391832b10139183e277a0042\"\r\n    },\r\n    {\r\n      \"chargeNumber\": null,\r\n      \"sourceName\": \"Import\",\r\n      \"quantity\": 2.0,\r\n      \"unitOfMeasure\": \"UOM\",\r\n      \"accountName\": \"subscribeCallYan_1\",\r\n      \"id\": \"2c92c8943db2ae51013dcce116af0f49\",\r\n      \"subscriptionNumber\": null,\r\n      \"startDateTime\": \"2012-02-03 00:00:00\",\r\n      \"accountNumber\": \"A00001115\",\r\n      \"status\": \"Pending\",\r\n      \"submissionDateTime\": \"2013-04-02 15:32:16\",\r\n      \"accountId\": \"2c92a0f9391832b10139183e277a0042\"\r\n    },\r\n    {\r\n      \"chargeNumber\": null,\r\n      \"sourceName\": \"Import\",\r\n      \"quantity\": 1.0,\r\n      \"unitOfMeasure\": \"UOM\",\r\n      \"accountName\": \"subscribeCallYan_1\",\r\n      \"id\": \"2c92c8953dac2b1c013dae0a263e35da\",\r\n      \"subscriptionNumber\": null,\r\n      \"startDateTime\": \"2012-02-02 00:00:00\",\r\n      \"accountNumber\": \"A00001115\",\r\n      \"status\": \"Pending\",\r\n      \"submissionDateTime\": \"2013-03-27 15:48:53\",\r\n      \"accountId\": \"2c92a0f9391832b10139183e277a0042\"\r\n    },\r\n    {\r\n      \"chargeNumber\": null,\r\n      \"sourceName\": \"Import\",\r\n      \"quantity\": 1.0,\r\n      \"unitOfMeasure\": \"UOM\",\r\n      \"accountName\": \"subscribeCallYan_1\",\r\n      \"id\": \"2c92c8943db2ae51013dcce116af0f48\",\r\n      \"subscriptionNumber\": null,\r\n      \"startDateTime\": \"2012-02-02 00:00:00\",\r\n      \"accountNumber\": \"A00001115\",\r\n      \"status\": \"Pending\",\r\n      \"submissionDateTime\": \"2013-04-02 15:32:16\",\r\n      \"accountId\": \"2c92a0f9391832b10139183e277a0042\"\r\n    },\r\n    {\r\n      \"chargeNumber\": null,\r\n      \"sourceName\": \"Import\",\r\n      \"quantity\": 4.0,\r\n      \"unitOfMeasure\": \"UOM\",\r\n      \"accountName\": \"subscribeCallYan_1\",\r\n      \"id\": \"2c92c8953dac2b1c013dae0a263e35d9\",\r\n      \"subscriptionNumber\": null,\r\n      \"startDateTime\": \"2012-01-05 00:00:00\",\r\n      \"accountNumber\": \"A00001115\",\r\n      \"status\": \"Pending\",\r\n      \"submissionDateTime\": \"2013-03-27 15:48:53\",\r\n      \"accountId\": \"2c92a0f9391832b10139183e277a0042\"\r\n    },\r\n    {\r\n      \"chargeNumber\": null,\r\n      \"sourceName\": \"Import\",\r\n      \"quantity\": 4.0,\r\n      \"unitOfMeasure\": \"UOM\",\r\n      \"accountName\": \"subscribeCallYan_1\",\r\n      \"id\": \"2c92c8943db2ae51013dcce116af0f47\",\r\n      \"subscriptionNumber\": null,\r\n      \"startDateTime\": \"2012-01-05 00:00:00\",\r\n      \"accountNumber\": \"A00001115\",\r\n      \"status\": \"Pending\",\r\n      \"submissionDateTime\": \"2013-04-02 15:32:16\",\r\n      \"accountId\": \"2c92a0f9391832b10139183e277a0042\"\r\n    }\r\n  ],\r\n  \"success\": true,\r\n  \"nextPage\": \"/usage/accounts/A00001115?page=2&amp;pageSize=10\"\r\n}</td></tr><tr><td>Sample Request Url</td></tr><tr><td>https://api.zuora.com/rest/v1/usage/accounts/A00001115?pageSize=10</td></tr></table>"
+        },
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  },
+  "definitions": {},
+  "responses": {},
+  "securityDefinitions": {}
+}
